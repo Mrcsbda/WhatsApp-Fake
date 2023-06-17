@@ -451,7 +451,7 @@
             padding: 1rem;
             gap: 0.7rem;
 
-            &--emojis-icon, &--media-icon, &--microphone-icon {
+            &--emojis-icon, &--media-icon, &--microphone-icon, &--send-icon {
                 width: 2rem;
                 filter: invert(30%) sepia(0%) saturate(252%) hue-rotate(211deg) brightness(93%) contrast(83%);
             }
