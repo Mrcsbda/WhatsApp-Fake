@@ -1,0 +1,66 @@
+@import "./reset";
+@import './variables';
+
+.main-sign-in{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgb(209, 205, 205);
+        border-radius: 5px;
+        & h2{
+            padding-top: 20px;
+            color: $color-keppel;
+        }
+        &-icons{
+            display: flex;
+            padding: 20px 0 0 0;
+            align-items: center;
+            &-icon{
+                display: flex;
+                width: 15px;
+                margin: 3px;
+                padding: 3px;
+                gap: 10px;
+                border: 1px solid rgb(207, 205, 205);
+                border-radius: 20px;
+            }
+        }
+        &__info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 40px;
+            & input{
+                margin: 3px;   
+                border-radius: 5px; 
+                padding: 10px;
+                border: none;
+                background-color: rgb(228, 223, 223);
+            }
+            & span{
+                padding: 10px 0;
+            }
+            &__buttons{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 20px;
+                &-button{
+                    background-color: $color-keppel;
+                    border: 2px solid white;
+                    border-radius: 20px;
+                    padding: 10px 20px;
+                    color: white;
+                }
+                & span{
+                    padding: 10px 20px;
+                }
+            }
+        }
+    }
+}
