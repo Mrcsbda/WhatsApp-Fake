@@ -1,5 +1,11 @@
-@import "./reset";
 @import './variables';
+@import "./reset";
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: $font-family-poppins;
+}
 
 .main-sign-in{
     display: flex;
@@ -12,22 +18,42 @@
         gap: 10px;
         border: 1px solid rgb(209, 205, 205);
         border-radius: 5px;
+        background-color: $color-light-gray;
         & h2{
             padding-top: 20px;
             color: $color-keppel;
         }
         &-icons{
             display: flex;
+            justify-content: center;
             padding: 20px 0 0 0;
-            align-items: center;
             &-icon{
                 display: flex;
-                width: 15px;
-                margin: 3px;
-                padding: 3px;
+                align-items: center;
                 gap: 10px;
-                border: 1px solid rgb(207, 205, 205);
-                border-radius: 20px;
+                padding: 3px;
+                &-facebook{
+                    height: 20px;
+                    width: auto;
+                    padding: 3px;
+                    border: 1px solid $color-silver;
+                    border-radius: 20px;
+                }
+                &-google{
+                    height: 20px;
+                    width: auto;
+                    padding: 3px;
+                    border: 1px solid $color-silver;
+                    border-radius: 20px; 
+                    gap: 10px;
+                }
+                &-linkedin{
+                    height: 20px;
+                    width: auto;
+                    padding: 3px;
+                    border: 1px solid $color-silver;
+                    border-radius: 20px;
+                }
             }
         }
         &__info{
@@ -35,13 +61,30 @@
             flex-direction: column;
             align-items: center;
             padding: 20px 40px;
-            & input{
-                margin: 3px;   
-                border-radius: 5px; 
-                padding: 10px;
-                border: none;
-                background-color: rgb(228, 223, 223);
+            &__input{
+                display: flex;
+                align-items: center;
+                &__icon{
+                    background-color: $color-silver;
+                    height: 40px;
+                    margin-top: 3px;
+                    align-items: center;
+                    padding: 10px 0 10px 10px;
+                    & img{
+                        height: 15px;
+                        width: auto;
+                        align-items: center;
+                    }
+                }
+                
+                & input{
+                    margin-top: 3px;  
+                    padding: 10px;
+                    border: none;
+                    background-color: $color-silver;
+                }
             }
+            
             & span{
                 padding: 10px 0;
             }
