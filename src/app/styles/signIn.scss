@@ -2,7 +2,7 @@
 @import "./reset";
 
 .main-sign-in {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -35,7 +35,7 @@
                 padding: 3px;
                 border: 1px solid $color-silver;
                 border-radius: 50%;
-                padding: 0.8rem;
+                padding: 0.6rem;
 
                 &-facebook, &-google, &-linkedin {
                     width: 1.5rem;
