@@ -3,3 +3,13 @@
 @import "./signIn.scss";
 @import "./home.scss";
 @import "./signUp.scss";
+
+button.swal2-confirm.swal2-styled {
+    background-color: $color-keppel;
+    box-shadow: none !important;
+}
+
+.login-active, .signUp-active, .home-active {
+    display: flex;
+}
+

@@ -11,7 +11,7 @@
 <body>
 </body>
 
-<div class="main-sign-in">
+<div class="main-sign-in login-active">
     <section class="main-sign-in__container">
         <h2>Iniciar Sesión</h2>
         <div class="main-sign-in__container-icons">
@@ -28,19 +28,18 @@
                     class="main-sign-in__container-icons-icon-linkedin" />
             </figure>
         </div>
-        <form class="main-sign-in__container__info">
+        <form id="form" class="main-sign-in__container__info">
             <div class="main-sign-in__container__info__input">
                 <figure class="main-sign-in__container__info__input__icon">
                     <img src="https://www.svgrepo.com/show/513796/user.svg" alt="user">
                 </figure>
-
-                <input type="text" placeholder="Usuario" />
+                <input id="user" type="text" placeholder="Usuario" />
             </div>
             <div class="main-sign-in__container__info__input">
                 <figure class="main-sign-in__container__info__input__icon">
                     <img src="https://www.svgrepo.com/show/518475/password.svg" alt="password">
                 </figure>
-                <input type="password" placeholder="Contraseña" />
+                <input id="password" type="password" placeholder="Contraseña" />
             </div>
             <span>¿Olvidaste tu Contraseña?</span>
             <div class="main-sign-in__container__info__buttons">
@@ -51,7 +50,7 @@
     </section>
 </div>
 
-<!-- <div class="main">
+<div class="main">
     <aside class="main__left-side">
         <section class="main__left-side__profile-container" id="userProfile">
             <div class="main__left-side__profile-container__header">
@@ -506,7 +505,6 @@
 
         </section>
     </article>
-</div> -->
-
+</div>
 
 </html>
