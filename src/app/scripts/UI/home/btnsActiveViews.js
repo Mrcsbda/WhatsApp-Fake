@@ -1,16 +1,21 @@
 export const activeViews = () => {
     const userProfile = document.getElementById('userProfile')
-    const viewUserProfileBtn = document.getElementById('userProfilePicture') 
     const closeUserProfileBtn = document.getElementById('closeProfile')
-    const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
+    const viewUserProfileBtn = document.getElementById('userProfilePicture') 
+
     const activeChat = document.querySelector('.main__chats-container')
-    const closeChatBtn = activeChat.querySelector('.main__chats-container__header__contact--return')
-    const viewContactProfileBtn = activeChat.querySelector('.main__chats-container__header__contact--profile-picture')
-    const messagesSearchBtn = activeChat.querySelector('.main__chats-container__header--searcher-icon')
-    const messagesSearch = document.querySelector('.main__messages-search-container')
-    const closeMessagesSearch = messagesSearch.querySelector('.main__messages-search-container__header--close')
+    const closeChatBtn = document.querySelector('.main__chats-container__header__contact--return')
+    const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
+
     const contactProfile = document.querySelector('.main__profie-contact-container')
     const closeContactProfileBtn = contactProfile.querySelector('.main__profie-contact-container__header--icon')
+    const viewContactProfileBtn = document.querySelector('.main__chats-container__header__contact--profile-picture')
+
+    const messagesSearch = document.querySelector('.main__messages-search-container')
+    const messagesSearchBtn = document.querySelector('.main__chats-container__header--searcher-icon')
+    const closeMessagesSearch = document.querySelector('.main__messages-search-container__header--close')
+    
+    
 
     viewUserProfileBtn.addEventListener('click', () => {
         userProfile.classList.add('active-view')

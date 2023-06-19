@@ -1,9 +1,10 @@
 import "../styles/styles.scss"
 import {activeViews} from './UI/home/btnsActiveViews.js'
 import { loginValidation } from "./UI/signIn/loginValidation.js"
-const userCurrentState = localStorage.getItem("userCurrentState");
-const loginContainer = document.querySelector('.main-sign-in');
+
 const homeContainer = document.querySelector('.main');
+const loginContainer = document.querySelector('.main-sign-in');
+const userCurrentState = localStorage.getItem("userCurrentState");
 
 document.addEventListener('DOMContentLoaded', ()=> {
     switch(true) {
