@@ -7,7 +7,7 @@ const homeContainer = document.querySelector('.main')
 const passwordInput = document.getElementById('password');
 const loginContainer = document.querySelector('.main-sign-in');
 
-export const loginValidation = async () => {
+const loginValidation = async () => {
     const data = await getUsers()
     form.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -27,4 +27,6 @@ export const loginValidation = async () => {
         }
     })
 }
+
+export default loginValidation;
 
