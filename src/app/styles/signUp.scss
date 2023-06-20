@@ -1,0 +1,96 @@
+@import './variables';
+@import "./reset";
+
+.main-sign-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $color-keppel;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgb(209, 205, 205);
+        background-color: white;
+        border-radius: 5px;
+
+        h2 {
+            padding: 1rem;
+            color: $color-keppel;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 40px;
+
+            &__input {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+
+                &__icon {
+                    display: flex;
+                    border: 1px solid $color-silver;
+                    border-right: none;
+                    padding: 0.6rem 0 0.6rem 0.6rem;
+                    border-radius: 10px 0 0 10px;
+
+                    img {
+                        width: 1.45rem;
+                        align-items: center;
+                    }
+                }
+
+                input {
+                    border: none;
+                    padding: 0.7rem;
+                    border: 1px solid $color-silver;
+                    border-left: none;
+                    border-radius: 0 10px 10px 0;
+                    outline: none;
+                }
+            }
+
+            &__text-area{
+                display: flex;
+                flex-direction: column;
+
+                label{
+                    color: #b6b1b1;
+                }
+
+                textarea {
+                    border: none;
+                    border-radius: 10px;
+                    border: 1px solid $color-silver;
+                    outline: none;
+                    width: 100%;
+                    height: 100px;
+                }
+            }
+
+            &__button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0.5rem 0;
+
+                &-button{
+                    background-color: $color-keppel;
+                    border: 2px solid white;
+                    border-radius: 20px;
+                    padding: 0.5rem 1rem;
+                    color: white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
