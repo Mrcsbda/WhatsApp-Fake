@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 activeViews()
-loginValidation()
-printSignUp()
-printLogin()
-signOff()
+loginValidation(homeContainer,loginContainer)
+printSignUp(loginContainer,signUpContainer)
+printLogin(loginContainer, signUpContainer)
+signOff(homeContainer,loginContainer)

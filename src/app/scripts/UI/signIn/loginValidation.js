@@ -3,11 +3,10 @@ import loginValidationAlerts from "./loginValidationAlerts";
 
 const form = document.getElementById('form');
 const userInput = document.getElementById('user');
-const homeContainer = document.querySelector('.main')
 const passwordInput = document.getElementById('password');
-const loginContainer = document.querySelector('.main-sign-in');
 
-const loginValidation = async () => {
+
+const loginValidation = async (homeContainer,loginContainer) => {
     const data = await getUsers()
     form.addEventListener("submit", (event) => {
         event.preventDefault()
