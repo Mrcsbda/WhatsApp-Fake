@@ -9,7 +9,6 @@ const loginContainer = document.querySelector('.main-sign-in');
 
 export const loginValidation = async () => {
     const data = await getUsers()
-    console.log(data)
     form.addEventListener("submit", (event) => {
         event.preventDefault()
         const userFound = data.find(user => user.phone === userInput.value)
