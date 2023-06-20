@@ -44,7 +44,7 @@
             <span>¿Olvidaste tu Contraseña?</span>
             <div class="main-sign-in__container__info__buttons">
                 <button class="main-sign-in__container__info__buttons-button">Iniciar Sesión</button>
-                <span>¿Aún no tienes cuenta? <br> <strong>Registrate Aqui!</strong></span>
+                <span>¿Aún no tienes cuenta? <br> <strong id="btnSignIn">Registrate Aqui!</strong></span>
             </div>
         </form>
     </section>
@@ -102,7 +102,7 @@
                     cambios</button>
             </div>
             <div class="main__left-side__profile-container__sign-off">
-                <button>Cerrar sesión</button>
+                <button id="btnSignOff">Cerrar sesión</button>
             </div>
         </section>
         <section class="main__left-side__chats-container">
@@ -509,7 +509,7 @@
 
 <div class="main-sign-up">
     <section class="main-sign-up__container">
-        <h2>Registro</h2>
+        <h2>Registrate Aqui</h2>
         <form class="main-sign-up__container__info">
             <div class="main-sign-up__container__info__input">
                 <figure class="main-sign-up__container__info__input__icon">
@@ -537,10 +537,11 @@
             </div>
             <div class="main-sign-up__container__info__text-area">
                 <label>Estado</label>
-                <textarea></textarea>
+                <textarea placeholder="Información sobre ti"></textarea>
             </div>
             <div class="main-sign-up__container__info__button">
                 <button class="main-sign-up__container__info__button-button" type="submit">Registrarse</button>
+                <span id="btnLogin">Iniciar sesión</span>
             </div>
         </form>
     </section>
