@@ -1,10 +1,12 @@
 import "../styles/styles.scss"
 import { activeViews } from './UI/home/btnsActiveViews.js'
+import signOff from "./UI/home/signOff";
 import printSignUp from "./UI/signIn/loadSignUp";
 import loginValidation from "./UI/signIn/loginValidation.js"
+import printLogin from "./UI/signUp/returnLogin";
 
 const homeContainer = document.querySelector('.main');
-const signUpContainer = document.querySelector('.main-sign-up')
+const signUpContainer = document.querySelector('.main-sign-up');
 const loginContainer = document.querySelector('.main-sign-in');
 const userCurrentState = localStorage.getItem("userCurrentState");
 
@@ -27,3 +29,5 @@ document.addEventListener('DOMContentLoaded', () => {
 activeViews()
 loginValidation()
 printSignUp()
+printLogin()
+signOff()
