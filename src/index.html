@@ -8,49 +8,86 @@
     <title>WhatsApp</title>
 </head>
 
-<body>
+<body id="pageContainer">
 </body>
 
-<div class="main-sign-in">
+<!-- <div class="main-sign-in">
     <section class="main-sign-in__container">
-        <h2>Iniciar Sesión</h2>
-        <div class="main-sign-in__container-icons">
-            <figure class="main-sign-in__container-icons-icon">
-                <img src="https://www.svgrepo.com/show/506656/facebook.svg" alt="facebook"
-                    class="main-sign-in__container-icons-icon-facebook" />
-            </figure>
-            <figure class="main-sign-in__container-icons-icon">
-                <img src="https://www.svgrepo.com/show/506498/google.svg" alt="google"
-                    class="main-sign-in__container-icons-icon-google" />
-            </figure>
-            <figure class="main-sign-in__container-icons-icon">
-                <img src="https://www.svgrepo.com/show/360535/linkedin.svg" alt="linkedin"
-                    class="main-sign-in__container-icons-icon-linkedin" />
-            </figure>
+      <h2>Iniciar Sesión</h2>
+      <div class="main-sign-in__container-icons">
+        <figure class="main-sign-in__container-icons-icon">
+          <img src="https://www.svgrepo.com/show/506656/facebook.svg" alt="facebook" class="main-sign-in__container-icons-icon-facebook"/>
+        </figure>
+        <figure class="main-sign-in__container-icons-icon">
+          <img src="https://www.svgrepo.com/show/340600/logo-google.svg" alt="google" class="main-sign-in__container-icons-icon-google"/>
+        </figure>
+        <figure class="main-sign-in__container-icons-icon">
+          <img src="https://www.svgrepo.com/show/93637/linkedin-logo.svg" alt="linkedin" class="main-sign-in__container-icons-icon-linkedin"/>
+        </figure>
+      </div>
+      <form class="main-sign-in__container__info">
+        <div class="main-sign-in__container__info__input">
+          <figure class="main-sign-in__container__info__input__icon">
+            <img src="https://www.svgrepo.com/show/513796/user.svg" alt="user">
+          </figure>
+          
+          <input type="text" placeholder="Usuario"/>
         </div>
-        <form id="form" class="main-sign-in__container__info">
-            <div class="main-sign-in__container__info__input">
-                <figure class="main-sign-in__container__info__input__icon">
+        <div class="main-sign-in__container__info__input">
+          <figure class="main-sign-in__container__info__input__icon">
+            <img src="https://www.svgrepo.com/show/518475/password.svg" alt="password">
+          </figure>
+          <input type="password" placeholder="Contraseña" />
+        </div>
+        <span>¿Olvidaste tu Contraseña?</span>
+        <div class="main-sign-in__container__info__buttons">
+          <button class="main-sign-in__container__info__buttons-button">Iniciar Sesión</button>
+          <span><u>Registrarse!</u></span>
+        </div>
+      </form>
+    </section>
+  </div> -->
+
+  <div class="main-sign-up">
+    <section class="main-sign-up__container">
+        <h2>Registro</h2>
+        <form class="main-sign-up__container__info">
+            <div class="main-sign-up__container__info__input">
+                <figure class="main-sign-up__container__info__input__icon">
                     <img src="https://www.svgrepo.com/show/513796/user.svg" alt="user">
                 </figure>
-                <input id="user" type="text" placeholder="Usuario" />
+                <input type="text" placeholder="Nombre">
             </div>
-            <div class="main-sign-in__container__info__input">
-                <figure class="main-sign-in__container__info__input__icon">
+            <div class="main-sign-up__container__info__input">
+                <figure class="main-sign-up__container__info__input__icon">
+                    <img src="https://www.svgrepo.com/show/518544/phone.svg" alt="phone">
+                </figure>
+                <input type="number" placeholder="Número de Celular">
+            </div>
+            <div class="main-sign-up__container__info__input">
+                <figure class="main-sign-up__container__info__input__icon">
                     <img src="https://www.svgrepo.com/show/518475/password.svg" alt="password">
                 </figure>
-                <input id="password" type="password" placeholder="Contraseña" />
+                <input type="password" placeholder="Contraseña">
             </div>
-            <span>¿Olvidaste tu Contraseña?</span>
-            <div class="main-sign-in__container__info__buttons">
-                <button class="main-sign-in__container__info__buttons-button">Iniciar Sesión</button>
-                <span>¿Aún no tienes cuenta? <br> <strong>Registrate Aqui!</strong></span>
+            <div class="main-sign-up__container__info__input">
+                <figure class="main-sign-up__container__info__input__icon">
+                    <img src="https://www.svgrepo.com/show/517020/image-combiner.svg" alt="image">
+                </figure>
+                <input type="url" placeholder="Url imagen">
+            </div>
+            <div class="main-sign-up__container__info__text-area">
+                <label>Estado</label>
+                <textarea></textarea>
+            </div>
+            <div class="main-sign-up__container__info__button">
+                <button class="main-sign-up__container__info__button-button" type="submit">Registrarse</button>
             </div>
         </form>
     </section>
-</div>
+  </div>
 
-<div class="main">
+<!-- <main class="main">
     <aside class="main__left-side">
         <section class="main__left-side__profile-container" id="userProfile">
             <div class="main__left-side__profile-container__header">
@@ -505,6 +542,7 @@
 
         </section>
     </article>
-</div>
+</main> -->
+
 
 </html>
