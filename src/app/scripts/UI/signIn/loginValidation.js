@@ -1,4 +1,5 @@
 import { getUsers } from "../../services/getUsers"
+import { patchUsers } from "../../services/patchUsers";
 import loginValidationAlerts from "./loginValidationAlerts";
 
 const form = document.getElementById('form');
@@ -23,6 +24,7 @@ const loginValidation = async (homeContainer,loginContainer) => {
             homeContainer.classList.add('home-active');
             localStorage.setItem("userCurrentState", "home");
             localStorage.setItem("currentUser", JSON.stringify(userFound));
+            patchUsers(userFound.id, true)
         }
     })
 }
