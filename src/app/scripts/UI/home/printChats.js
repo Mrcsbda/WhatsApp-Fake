@@ -16,7 +16,6 @@ const printChats = async () => {
     const dataUsersWithChats = getChatsByUser(data)
 
     listChatsContainer.innerHTML = "";
-    console.log(dataUsersWithChats)
     dataUsersWithChats.forEach(user => {
 
         listChatsContainer.innerHTML += `
@@ -51,12 +50,13 @@ const printChats = async () => {
             const userId = chat.getAttribute("user-id");
             const chatId = chat.getAttribute("chat-id")
             activeChat.classList.add('active-view')
-            loadMessages()
+            loadMessages(chatId)
         })
     })
 }
 
 const getChatsByUser = ({users, chats, currentUser}) => {
+    if(!currentUser) return [];
     return users.map((dataUser) => {
         return {
             dataUser,
@@ -66,7 +66,21 @@ const getChatsByUser = ({users, chats, currentUser}) => {
 }
 
 const getLastTimeMessage = (dataChat) => {
-    return !dataChat?"":new Date(dataChat.messages[dataChat.messages.length-1].hour).toLocaleString("es").split(",")[0]
+    if (!dataChat) return ""
+    const today = new Date().setHours(0, 0, 0, 0);
+    const sentDate = new Date(dataChat.messages[dataChat.messages.length - 1].hour).setHours(0, 0, 0, 0);
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (!dataChat) {
+        return ""
+    } else if (sentDate === today){
+        return "Hoy"
+    } else if (sentDate === yesterday) {
+        return "Ayer"
+    } else {
+        return new Date(sentDate).toLocaleDateString();
+    }
 }
 
 const getLastMessage = (dataChat) => {
