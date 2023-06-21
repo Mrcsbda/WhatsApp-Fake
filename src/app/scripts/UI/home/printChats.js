@@ -14,12 +14,12 @@ const printChats = async () => {
         currentUser
     }
     const dataUsersWithChats = getChatsByUser(data)
-
+    console.log(currentUser)
     listChatsContainer.innerHTML = "";
     dataUsersWithChats.forEach(user => {
 
         listChatsContainer.innerHTML += `
-        <div class="main__left-side__chats-container__chats__contact-chat" user-id="${user.dataUser.id}" chat-id="${!user.dataChat?0:user.dataChat.id}">
+        <div class="main__left-side__chats-container__chats__contact-chat" user-id="${user.dataUser.id}" chat-id="${!user.dataChat ? 0 : user.dataChat.id}">
             <img class="main__left-side__chats-container__chats__contact-chat--profile-picture"
                     src="${user.dataUser.image}" alt="">
             <div class="main__left-side__chats-container__chats__contact-chat__conversation-container">
@@ -33,7 +33,7 @@ const printChats = async () => {
                 </p>
                 <p
                         class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation">
-                        <img class="${!user.dataChat?"inactive-icon":"main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"}"
+                        <img class="${!user.dataChat ? "inactive-icon" : "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"}"
                             src="https://www.svgrepo.com/show/445629/check-all.svg" alt="viewed icon">
                         <span
                                 class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message">
@@ -43,7 +43,7 @@ const printChats = async () => {
         </div>
         `
     })
-   
+
     const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
     listChats.forEach(chat => {
         chat.addEventListener('click', () => {
@@ -55,12 +55,14 @@ const printChats = async () => {
     })
 }
 
-const getChatsByUser = ({users, chats, currentUser}) => {
-    if(!currentUser) return [];
+const getChatsByUser = ({ users, chats, currentUser }) => {
+    if (!currentUser) return [];
     return users.map((dataUser) => {
         return {
             dataUser,
-            dataChat: chats.find(chat => chat.idUser1 === dataUser.id || chat.idUser2 === dataUser.id)
+            dataChat: chats.find(chat => 
+                (chat.idUser1 === dataUser.id || chat.idUser2 === dataUser.id) && 
+                (currentUser.id === chat.idUser1 || currentUser.id === chat.idUser2))
         }
     }).filter(data => data.dataUser.id !== currentUser.id)
 }
@@ -74,7 +76,7 @@ const getLastTimeMessage = (dataChat) => {
 
     if (!dataChat) {
         return ""
-    } else if (sentDate === today){
+    } else if (sentDate === today) {
         return "Hoy"
     } else if (sentDate === yesterday) {
         return "Ayer"
@@ -84,7 +86,7 @@ const getLastTimeMessage = (dataChat) => {
 }
 
 const getLastMessage = (dataChat) => {
-    return !dataChat?" ":dataChat.messages[dataChat.messages.length-1].message;
+    return !dataChat ? " " : dataChat.messages[dataChat.messages.length - 1].message;
 }
 
 export default printChats;
