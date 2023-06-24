@@ -14,7 +14,6 @@ const printChats = async () => {
         currentUser
     }
     const dataUsersWithChats = getChatsByUser(data)
-    console.log(currentUser)
     listChatsContainer.innerHTML = "";
     dataUsersWithChats.forEach(user => {
 
@@ -50,6 +49,7 @@ const printChats = async () => {
             const userId = chat.getAttribute("user-id");
             const chatId = chat.getAttribute("chat-id")
             activeChat.classList.add('active-view')
+            localStorage.setItem('userId', userId)
             loadMessages(chatId)
         })
     })

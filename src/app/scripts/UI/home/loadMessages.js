@@ -15,8 +15,6 @@ const loadMessages = async (idChat) => {
             separateDatePerDay(chatMessage.date, chatMessage)
         );
 
-        console.log(chatMessagesSeparatedByDate)
-        console.log(currentUser)
         chatMessagesSeparatedByDate.forEach(chat => {
             messagesContainer.innerHTML += `
             <div class="main__chats-container__messages-container__date">

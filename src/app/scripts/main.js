@@ -1,6 +1,7 @@
 import "../styles/styles.scss"
 import { activeViews } from './UI/home/btnsActiveViews.js'
 import printChats from "./UI/home/printChats";
+import sendMessage from "./UI/home/sendMessage";
 import signOff from "./UI/home/signOff";
 import printSignUp from "./UI/signIn/loadSignUp";
 import loginValidation from "./UI/signIn/loginValidation.js"
@@ -28,8 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 activeViews()
+printChats()
+sendMessage()
 loginValidation(homeContainer,loginContainer)
 printSignUp(loginContainer,signUpContainer)
 printLogin(loginContainer, signUpContainer)
 signOff(homeContainer,loginContainer)
-printChats()
