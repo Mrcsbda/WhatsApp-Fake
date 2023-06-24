@@ -20,6 +20,17 @@ const loginValidationAlerts = (alertType, userFound = null) => {
             text: 'Contraseña incorrecta, vuelve a intentarlo',
         })
             break;
+        case "existenPhone": Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El número de telefono ya existe',
+        })
+        case "successfulRegistration": Swal.fire({
+            icon: 'success',
+            title: 'Bienvenido/a',
+            text: 'El registro fue exitoso',
+        })
+            break;
         default: Swal.fire({
             position: 'center',
             icon: 'success',
