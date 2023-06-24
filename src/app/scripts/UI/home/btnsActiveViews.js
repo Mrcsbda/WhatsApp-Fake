@@ -5,7 +5,6 @@ export const activeViews = () => {
 
     const activeChat = document.querySelector('.main__chats-container')
     const closeChatBtn = document.querySelector('.main__chats-container__header__contact--return')
-    const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
 
     const contactProfile = document.querySelector('.main__profie-contact-container')
     const closeContactProfileBtn = contactProfile.querySelector('.main__profie-contact-container__header--icon')
@@ -15,7 +14,6 @@ export const activeViews = () => {
     const messagesSearchBtn = document.querySelector('.main__chats-container__header--searcher-icon')
     const closeMessagesSearch = document.querySelector('.main__messages-search-container__header--close')
     
-    
 
     viewUserProfileBtn.addEventListener('click', () => {
         userProfile.classList.add('active-view')
@@ -23,12 +21,6 @@ export const activeViews = () => {
 
     closeUserProfileBtn.addEventListener('click', () => {
         userProfile.classList.remove('active-view')
-    })
-
-    listChats.forEach(chat => {
-        chat.addEventListener('click', () => {
-            activeChat.classList.add('active-view')
-        })
     })
 
     closeChatBtn.addEventListener('click', () => {
