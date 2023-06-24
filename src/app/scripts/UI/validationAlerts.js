@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const loginValidationAlerts = (alertType, userFound = null) => {
+const validationAlerts = (alertType, userFound = null) => {
     switch (alertType) {
         case "emptyFields": Swal.fire({
             icon: 'error',
@@ -25,6 +25,7 @@ const loginValidationAlerts = (alertType, userFound = null) => {
             title: 'Oops...',
             text: 'El número de telefono ya existe',
         })
+            break;
         case "successfulRegistration": Swal.fire({
             icon: 'success',
             title: 'Bienvenido/a',
@@ -42,4 +43,4 @@ const loginValidationAlerts = (alertType, userFound = null) => {
     }
 }
 
-export default loginValidationAlerts
+export default validationAlerts

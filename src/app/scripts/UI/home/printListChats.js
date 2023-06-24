@@ -4,7 +4,7 @@ import loadMessages from "./loadMessages"
 const activeChat = document.querySelector('.main__chats-container')
 const listChatsContainer = document.getElementById('listChatsContainer')
 
-const printChats = async () => {
+const printListChats = async () => {
     const users = await getUsers()
     const chats = await getChats()
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -89,4 +89,4 @@ const getLastMessage = (dataChat) => {
     return !dataChat ? " " : dataChat.messages[dataChat.messages.length - 1].message;
 }
 
-export default printChats;
+export default printListChats;
