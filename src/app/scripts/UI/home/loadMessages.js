@@ -7,6 +7,7 @@ const loadMessages = async (idChat) => {
     const chats = await getChats();
     const currentChat = chats.find(chat => chat.id == idChat);
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    
     messagesContainer.innerHTML = "";
     chatMessagesSeparatedByDate = [];
 
@@ -35,10 +36,7 @@ const loadMessages = async (idChat) => {
                 `
             })
         })
-
     }
-
-
 }
 
 const separateDatePerDay = (date, message) => {
@@ -50,12 +48,12 @@ const separateDatePerDay = (date, message) => {
     let dayPreviousExists = chatMessagesSeparatedByDate.findIndex(
         (chatMessage) =>
             chatMessage.day ===
-            getDateLabelDependingOnDateWereMessageWasSent(sentDate, today, yesterday)
+            getDayLabel(sentDate, today, yesterday)
     );
 
     if (dayPreviousExists === -1) {
         chatMessagesSeparatedByDate.push({
-            day: getDateLabelDependingOnDateWereMessageWasSent(
+            day: getDayLabel(
                 sentDate,
                 today,
                 yesterday
@@ -68,7 +66,7 @@ const separateDatePerDay = (date, message) => {
     chatMessagesSeparatedByDate[dayPreviousExists].messages.push(message);
 }
 
-const getDateLabelDependingOnDateWereMessageWasSent = (sentDate, today, yesterday) => {
+const getDayLabel = (sentDate, today, yesterday) => {
 
     if (sentDate === today) return 'Hoy';
     if (sentDate === yesterday) {
