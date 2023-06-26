@@ -15,6 +15,7 @@ const printChats = async () => {
         currentUser
     }
     const dataUsersWithChats = getChatsByUser(data)
+    console.log(dataUsersWithChats)
     listChatsContainer.innerHTML = "";
     dataUsersWithChats.forEach(user => {
 
@@ -55,11 +56,18 @@ const getChatsByUser = ({ users, chats, currentUser }) => {
     return users.map((dataUser) => {
         return {
             dataUser,
-            dataChat: chats.find(chat => 
-                (chat.idUser1 === dataUser.id || chat.idUser2 === dataUser.id) && 
+            dataChat: chats.find(chat =>
+                (chat.idUser1 === dataUser.id || chat.idUser2 === dataUser.id) &&
                 (currentUser.id === chat.idUser1 || currentUser.id === chat.idUser2))
         }
-    }).filter(data => data.dataUser.id !== currentUser.id)
+    }).filter(data => data.dataUser.id !== currentUser.id).sort((previous, current) => {
+        if (!previous.dataChat || !current.dataChat) {
+            if (!previous.dataChat && !current.dataChat) return 0; // Ambos tienen lastMessageSentAt indefinido
+            if (!previous.dataChat) return 1; // previous tiene lastMessageSentAt indefinido
+            if (!current.dataChat) return -1; // current tiene lastMessageSentAt indefinido
+        }
+        return current.dataChat.lastMessageSentAt - previous.dataChat.lastMessageSentAt;
+    })
 }
 
 const getLastTimeMessage = (dataChat) => {
