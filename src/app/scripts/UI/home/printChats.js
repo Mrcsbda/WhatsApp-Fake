@@ -1,6 +1,7 @@
 import { getChats } from "../../services/getChats"
 import { getUsers } from "../../services/getUsers"
 import loadMessages from "./loadMessages"
+import printContactProfile from "./printProfileContact"
 const activeChat = document.querySelector('.main__chats-container')
 const listChatsContainer = document.getElementById('listChatsContainer')
 
@@ -45,13 +46,7 @@ const printChats = async () => {
 
     const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
     listChats.forEach(chat => {
-        chat.addEventListener('click', () => {
-            const userId = chat.getAttribute("user-id");
-            const chatId = chat.getAttribute("chat-id")
-            activeChat.classList.add('active-view')
-            localStorage.setItem('userId', userId)
-            loadMessages(chatId)
-        })
+        showCurrentChat(chat);
     })
 }
 
@@ -87,6 +82,23 @@ const getLastTimeMessage = (dataChat) => {
 
 const getLastMessage = (dataChat) => {
     return !dataChat ? " " : dataChat.messages[dataChat.messages.length - 1].message;
+}
+
+const showCurrentChat = (currentChat) => {
+    currentChat.addEventListener('click', () => {
+        const userId = currentChat.getAttribute("user-id");
+        const chatId = currentChat.getAttribute("chat-id")
+        activeChat.classList.add('active-view')
+        localStorage.setItem('contactId', userId)
+        loadMessages(chatId)
+        printContactProfile()
+        closeViewActives()
+    })
+}
+
+const closeViewActives = () => {
+    const contactProfile = document.querySelector('.main__profie-contact-container')
+    contactProfile.classList.remove('active-view');
 }
 
 export default printChats;

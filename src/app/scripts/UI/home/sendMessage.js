@@ -26,7 +26,7 @@ const getInfoChat = async () => {
     const chats = await getChats();
     const currentDay = new Date().getTime();
     const idCurrentUser = JSON.parse(localStorage.getItem('currentUser')).id;
-    const idContact = +localStorage.getItem('userId');
+    const idContact = +localStorage.getItem('contactId');
     const currentChat = chats.find(chat =>
         (chat.idUser1 === idCurrentUser || chat.idUser2 === idCurrentUser) &&
         (idContact === chat.idUser1 || idContact === chat.idUser2))
