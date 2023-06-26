@@ -100,11 +100,11 @@ const showCurrentChat = (currentChat) => {
         localStorage.setItem('contactId', userId)
         loadMessages(chatId)
         printContactProfile()
-        closeViewActives()
+        closeViewActive()
     })
 }
 
-const closeViewActives = () => {
+const closeViewActive = () => {
     const contactProfile = document.querySelector('.main__profie-contact-container')
     contactProfile.classList.remove('active-view');
 }

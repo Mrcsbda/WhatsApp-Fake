@@ -24,14 +24,22 @@ const loadMessages = async (idChat) => {
             chat.messages.forEach(message => {
                 messagesContainer.innerHTML += `
                 <div class="${sendById(message.sendBy, currentUser)}">
-                <p class="${sendById(message.sendBy, currentUser)}__message-container">
-
-                    <span class="${sendById(message.sendBy, currentUser)}__message-container--message">${message.message}</span>
-                    <span class="${sendById(message.sendBy, currentUser)}__message-container--hour">
-                    ${new Date(message.hour).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
-                </p>
-                <div></div>
+                <div class="${sendById(message.sendBy, currentUser)}__message-container">
+                    <p class="${sendById(message.sendBy, currentUser)}__message-container--message">${message.message}</p>
+                    <p class="${sendById(message.sendBy, currentUser)}__message-container--hour">
+                    ${new Date(message.hour).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                    <button class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete-btn">
+                        <img src="https://www.svgrepo.com/show/511356/arrow-down-338.svg" alt="arrow icon">
+                    </button>
+                    <div class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete">
+                        <img src="https://www.svgrepo.com/show/438388/close.svg" alt="">
+                        <p>Editar</p>
+                        <p>Eliminar</p>
+                    </div>
                 </div>
+                <div class="${sendById(message.sendBy, currentUser)}--rectangle"></div>
+                </div>
+                
                 `
             })
         })
@@ -80,7 +88,7 @@ const getDateLabelDependingOnDateWereMessageWasSent = (sentDate, today, yesterda
 }
 
 const sendById = (sendById, currentUser) => {
-    
+
     if (sendById === currentUser.id) {
         return "main__chats-container__messages-container__sender"
     } else {

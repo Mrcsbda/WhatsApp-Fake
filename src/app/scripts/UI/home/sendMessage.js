@@ -8,7 +8,7 @@ const inputMessage = document.getElementById('inputMessage');
 const sendMessage = () => {
     sendMessageIcon.addEventListener('click', async () => {
         const infoChat = await getInfoChat();
-        console.log(infoChat)
+
         if(inputMessage.value === '') return
         if (infoChat.currentChat) {
             const allMessages = infoChat.currentChat.messages;
