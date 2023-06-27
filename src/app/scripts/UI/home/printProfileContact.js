@@ -4,11 +4,16 @@ const contactProfile = document.querySelector('.main__profie-contact-container')
 const headerChat = document.querySelector('.main__chats-container__header__contact');
 const activeChat = document.querySelector('.main__chats-container');
 
-const printContactProfile = async () => {
+const printContactProfile = async (id=null) => {
     const contactId = localStorage.getItem('contactId');
     const data = await getUsers()
-    const contactData = data.find(user => user.id === +contactId);
-
+    let contactData = []
+    if (id) {
+        contactData = data.find(user => user.id === id);
+    } else {
+        contactData = data.find(user => user.id === +contactId);
+    }
+     
     contactProfile.innerHTML = `
         <section class="main__profie-contact-container__header">
             <img src="https://www.svgrepo.com/show/511383/arrow-left-350.svg" alt="return chat icon"

@@ -15,7 +15,6 @@ const printChats = async () => {
         currentUser
     }
     const dataUsersWithChats = getChatsByUser(data)
-    console.log(dataUsersWithChats)
     listChatsContainer.innerHTML = "";
     dataUsersWithChats.forEach(user => {
 

@@ -1,5 +1,6 @@
 import "../styles/styles.scss"
 import { activeViews } from './UI/home/btnsActiveViews.js'
+import loadLastMessage from "./UI/home/loadLastMessages";
 import printChats from "./UI/home/printChats";
 import sendMessage from "./UI/home/sendMessage";
 import signOff from "./UI/home/signOff";
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 activeViews()
 printChats()
 sendMessage()
+loadLastMessage()
 loginValidation(homeContainer,loginContainer)
 printSignUp(loginContainer,signUpContainer)
 printLogin(loginContainer, signUpContainer)

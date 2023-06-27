@@ -45,8 +45,6 @@ const loadMessages = async (idChat) => {
         })
 
     }
-
-
 }
 
 const separateDatePerDay = (date, message) => {

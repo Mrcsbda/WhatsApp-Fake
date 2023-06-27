@@ -359,7 +359,7 @@
             background-image: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
             background-size: contain;
             overflow: auto;
-         
+
             padding: 1rem 1.5rem;
             display: flex;
             flex-direction: column;
@@ -502,6 +502,7 @@
             justify-content: space-between;
             padding: 1rem;
             gap: 0.7rem;
+            position: relative;
 
             &--emojis-icon,
             &--media-icon,
@@ -519,6 +520,39 @@
                 border-radius: 1rem;
                 padding: 0.6rem 1rem;
                 outline: none;
+            }
+
+            &__edit-message-container {
+                position: absolute;
+                width: 100%;
+                top: -77px;
+                left: 0;
+                padding: 1rem 2rem;
+                background-color: white;
+                display: flex;
+                gap: 1rem;
+                display: none;
+
+                &--icon-edit {
+                    width: 1.2rem;
+                }
+
+                &__text-container {
+                    display: flex;
+                    flex-direction: column;
+                    font-weight: 600;
+
+                    &--message {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        color: $color-main-gray;
+                        font-size: 0.9rem;
+                        font-weight: 500
+                    }
+                }
             }
         }
     }

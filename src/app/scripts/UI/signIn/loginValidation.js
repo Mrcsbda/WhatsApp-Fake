@@ -1,5 +1,6 @@
 import { getUsers } from "../../services/getUsers"
 import { patchUsers } from "../../services/patchUsers";
+import loadLastMessage from "../home/loadLastMessages";
 import printChats from "../home/printChats";
 import loginValidationAlerts from "./loginValidationAlerts";
 
@@ -27,6 +28,7 @@ const loginValidation = async (homeContainer,loginContainer) => {
             localStorage.setItem("currentUser", JSON.stringify(userFound));
             patchUsers(userFound.id, true)
             printChats()
+            loadLastMessage()
         }
     })
 }
