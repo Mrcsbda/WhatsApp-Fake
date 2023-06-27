@@ -2,6 +2,7 @@ import { getUsers } from "../../services/getUsers"
 import { patchUsers } from "../../services/patchUsers";
 import printListChats from "../home/printListChats";
 import validationAlerts from "../validationAlerts";
+import printInfoUsers from "../home/printInfoUsers";
 
 const form = document.getElementById('form');
 const userInput = document.getElementById('user');
@@ -27,6 +28,7 @@ const loginValidation = async (homeContainer,loginContainer) => {
             localStorage.setItem("currentUser", JSON.stringify(userFound));
             patchUsers(userFound.id, true)
             printListChats()
+            printInfoUsers()
         }
     })
 }

@@ -1,7 +1,5 @@
 export const activeViews = () => {
-    const userProfile = document.getElementById('userProfile')
-    const closeUserProfileBtn = document.getElementById('closeProfile')
-    const viewUserProfileBtn = document.getElementById('userProfilePicture') 
+     
 
     const activeChat = document.querySelector('.main__chats-container')
     const closeChatBtn = document.querySelector('.main__chats-container__header__contact--return')
@@ -15,13 +13,7 @@ export const activeViews = () => {
     const closeMessagesSearch = document.querySelector('.main__messages-search-container__header--close')
     
 
-    viewUserProfileBtn.addEventListener('click', () => {
-        userProfile.classList.add('active-view')
-    })
-
-    closeUserProfileBtn.addEventListener('click', () => {
-        userProfile.classList.remove('active-view')
-    })
+    
 
     closeChatBtn.addEventListener('click', () => {
         activeChat.classList.remove('active-view')
