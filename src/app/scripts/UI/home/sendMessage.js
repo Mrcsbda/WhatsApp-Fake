@@ -1,16 +1,26 @@
 import createNewChat from "../../services/createNewChat";
 import editMessages from "../../services/editMessages";
 import { getChats } from "../../services/getChats";
+import { editMessage } from "./editMessage";
 
 const sendMessageIcon = document.getElementById('sendMessageIcon');
 const inputMessage = document.getElementById('inputMessage');
+const editContainer = document.querySelector('.main__chats-container__footer__edit-message-container');
 
 const sendMessage = () => {
     sendMessageIcon.addEventListener('click', async () => {
         const infoChat = await getInfoChat();
+        const messageToEditId = JSON.parse(localStorage.getItem('messageToEditId'));
 
         if(inputMessage.value === '') return
-        if (infoChat.currentChat) {
+
+        if (messageToEditId) {
+            const currentChat = await editMessage()
+            console.log(currentChat)
+            editMessages(currentChat.id, currentChat.messages, false);
+            closeViewActive()
+            localStorage.removeItem('messageToEditId')
+        } else if (infoChat.currentChat) {
             const allMessages = infoChat.currentChat.messages;
             allMessages.push(infoChat.newMessage);
             editMessages(infoChat.currentChat.id, allMessages, true);
@@ -52,5 +62,11 @@ const getInfoChat = async () => {
         newMessage
     }
 
+}
+
+const closeViewActive = () => {
+    sendMessageIcon.setAttribute('src', 'https://www.svgrepo.com/show/505493/send-2.svg')
+    sendMessageIcon.classList.remove('btn-edit-sucess')
+    editContainer.classList.remove('edit-active-view')
 }
 export default sendMessage;

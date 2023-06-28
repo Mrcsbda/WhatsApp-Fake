@@ -1,10 +1,9 @@
 import { getChats } from "../../services/getChats";
-import { closeEditOrDeleteBtns, showEditOrDeleteBtns } from "./btnsEditAndDelete";
+import { showEditOrDeleteBtns } from "./btnsEditAndDelete";
 import { getDeleteButtons } from "./deleteMessages";
-import { getEditButtons } from "./editMessages";
+import { getEditButtons,  } from "./editMessage";
 const messagesContainer = document.getElementById('messagesContainer')
 let chatMessagesSeparatedByDate = [];
-
 
 const loadMessages = async (idChat) => {
     const chats = await getChats();
@@ -50,6 +49,7 @@ const loadMessages = async (idChat) => {
         const optionsContainer = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container--edit-or-delete');
         const deleteButtons = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container-delete');
         const editButtons = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container-edit');
+
         showEditOrDeleteBtns(btnEditOrDelete, optionsContainer)
         getDeleteButtons(deleteButtons, optionsContainer)
         getEditButtons(editButtons, optionsContainer)

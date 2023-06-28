@@ -1,5 +1,6 @@
 import "../styles/styles.scss"
 import { activeViews } from './UI/home/btnsActiveViews.js'
+import { closeEditContainer } from "./UI/home/closeEditMessage";
 import loadLastMessage from "./UI/home/loadLastMessages";
 import printChats from "./UI/home/printChats";
 import sendMessage from "./UI/home/sendMessage";
@@ -37,3 +38,4 @@ printSignUp(loginContainer,signUpContainer)
 printLogin(loginContainer, signUpContainer)
 signOff(homeContainer,loginContainer)
 loadLastMessage()
+closeEditContainer()

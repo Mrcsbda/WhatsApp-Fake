@@ -2,8 +2,12 @@ import { getChats } from "../../services/getChats"
 import { getUsers } from "../../services/getUsers"
 import loadMessages from "./loadMessages"
 import printContactProfile from "./printProfileContact"
-const activeChat = document.querySelector('.main__chats-container')
-const listChatsContainer = document.getElementById('listChatsContainer')
+
+const activeChat = document.querySelector('.main__chats-container');
+const listChatsContainer = document.getElementById('listChatsContainer');
+const editContainer = document.querySelector('.main__chats-container__footer__edit-message-container');
+const sendMessageIcon = document.getElementById('sendMessageIcon');
+
 
 const printChats = async () => {
     const users = await getUsers()
@@ -16,8 +20,8 @@ const printChats = async () => {
     }
     const dataUsersWithChats = getChatsByUser(data)
     listChatsContainer.innerHTML = "";
+    
     dataUsersWithChats.forEach(user => {
-
         listChatsContainer.innerHTML += `
         <div class="main__left-side__chats-container__chats__contact-chat" user-id="${user.dataUser.id}" chat-id="${!user.dataChat ? 0 : user.dataChat.id}">
             <img class="main__left-side__chats-container__chats__contact-chat--profile-picture"
@@ -33,7 +37,7 @@ const printChats = async () => {
                 </p>
                 <p
                         class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation">
-                        <img class="${!user.dataChat ? "inactive-icon" : "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"}"
+                        <img class="${!user.dataChat ||!user.dataChat.messages.length? "inactive-icon" : "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"}"
                             src="https://www.svgrepo.com/show/445629/check-all.svg" alt="viewed icon">
                         <span
                                 class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message">
@@ -70,15 +74,13 @@ const getChatsByUser = ({ users, chats, currentUser }) => {
 }
 
 const getLastTimeMessage = (dataChat) => {
-    if (!dataChat) return ""
+    if (!dataChat||!dataChat.messages.length) return ""
     const today = new Date().setHours(0, 0, 0, 0);
     const sentDate = new Date(dataChat.messages[dataChat.messages.length - 1].hour).setHours(0, 0, 0, 0);
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
 
-    if (!dataChat) {
-        return ""
-    } else if (sentDate === today) {
+    if (sentDate === today) {
         return "Hoy"
     } else if (sentDate === yesterday) {
         return "Ayer"
@@ -88,7 +90,8 @@ const getLastTimeMessage = (dataChat) => {
 }
 
 const getLastMessage = (dataChat) => {
-    return !dataChat ? " " : dataChat.messages[dataChat.messages.length - 1].message;
+    
+    return !dataChat||!dataChat.messages.length ? " " : dataChat.messages[dataChat.messages.length - 1].message;
 }
 
 const showCurrentChat = (currentChat) => {
@@ -106,6 +109,11 @@ const showCurrentChat = (currentChat) => {
 const closeViewActive = () => {
     const contactProfile = document.querySelector('.main__profie-contact-container')
     contactProfile.classList.remove('active-view');
+    sendMessageIcon.setAttribute('src', 'https://www.svgrepo.com/show/505493/send-2.svg')
+    sendMessageIcon.classList.remove('btn-edit-sucess')
+    editContainer.classList.remove('edit-active-view')
 }
+
+
 
 export default printChats;

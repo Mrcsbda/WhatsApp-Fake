@@ -8,6 +8,7 @@ export const activeViews = () => {
     const closeMessagesSearch = document.querySelector('.main__messages-search-container__header--close')
     
 
+
     viewUserProfileBtn.addEventListener('click', () => {
         userProfile.classList.add('active-view')
     })

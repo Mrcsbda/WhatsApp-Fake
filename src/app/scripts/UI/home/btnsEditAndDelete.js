@@ -1,4 +1,3 @@
-
 export const showEditOrDeleteBtns = (buttons, options) => {
     buttons.forEach(button => {
         button.addEventListener("click", () => {
