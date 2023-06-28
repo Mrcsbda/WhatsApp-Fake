@@ -9,7 +9,7 @@ const editContainer = document.querySelector('.main__chats-container__footer__ed
 const sendMessageIcon = document.getElementById('sendMessageIcon');
 
 
-const printChats = async () => {
+const printListChats = async () => {
     const users = await getUsers()
     const chats = await getChats()
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -114,6 +114,4 @@ const closeViewActive = () => {
     editContainer.classList.remove('edit-active-view')
 }
 
-
-
-export default printChats;
+export default printListChats;

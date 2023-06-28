@@ -1,8 +1,8 @@
 import { getUsers } from "../../services/getUsers"
 import { patchUsers } from "../../services/patchUsers";
 import loadLastMessage from "../home/loadLastMessages";
-import printChats from "../home/printChats";
-import loginValidationAlerts from "./loginValidationAlerts";
+import printListChats from "../home/printListChats";
+import validationAlerts from "../validationAlerts";
 
 const form = document.getElementById('form');
 const userInput = document.getElementById('user');
@@ -15,20 +15,20 @@ const loginValidation = async (homeContainer,loginContainer) => {
         event.preventDefault()
         const userFound = data.find(user => user.phone === userInput.value)
         if (userInput.value === "" || passwordInput.value === "") {
-            loginValidationAlerts("emptyFields")
+            validationAlerts("emptyFields")
         } else if (!userFound) {
-            loginValidationAlerts("nonExistentUser")
+            validationAlerts("nonExistentUser")
         } else if (passwordInput.value !== userFound.password) {
-            loginValidationAlerts("incorrectPassword")
+            validationAlerts("incorrectPassword")
         } else {
-            loginValidationAlerts("success", userFound)
+            validationAlerts("success", userFound)
             loginContainer.classList.remove('login-active');
             homeContainer.classList.add('home-active');
             localStorage.setItem("userCurrentState", "home");
             localStorage.setItem("currentUser", JSON.stringify(userFound));
             patchUsers(userFound.id, true)
-            printChats()
             loadLastMessage()
+            printListChats()
         }
     })
 }

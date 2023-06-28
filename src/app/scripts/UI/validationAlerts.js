@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const loginValidationAlerts = (alertType, userFound = null) => {
+const validationAlerts = (alertType, userFound = null) => {
     switch (alertType) {
         case "emptyFields": Swal.fire({
             icon: 'error',
@@ -20,6 +20,18 @@ const loginValidationAlerts = (alertType, userFound = null) => {
             text: 'Contraseña incorrecta, vuelve a intentarlo',
         })
             break;
+        case "existenPhone": Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El número de telefono ya existe',
+        })
+            break;
+        case "successfulRegistration": Swal.fire({
+            icon: 'success',
+            title: 'Bienvenido/a',
+            text: 'El registro fue exitoso',
+        })
+            break;
         default: Swal.fire({
             position: 'center',
             icon: 'success',
@@ -31,4 +43,4 @@ const loginValidationAlerts = (alertType, userFound = null) => {
     }
 }
 
-export default loginValidationAlerts
+export default validationAlerts

@@ -16,7 +16,6 @@ const sendMessage = () => {
 
         if (messageToEditId) {
             const currentChat = await editMessage()
-            console.log(currentChat)
             editMessages(currentChat.id, currentChat.messages, false);
             closeViewActive()
             localStorage.removeItem('messageToEditId')

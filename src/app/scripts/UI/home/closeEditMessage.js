@@ -9,5 +9,6 @@ export const closeEditContainer = () => {
         sendMessageIcon.classList.remove('btn-edit-sucess')
         editContainer.classList.remove('edit-active-view')
         inputMessage.value = ''
+        localStorage.removeItem('messageToEditId')
     })
 }
