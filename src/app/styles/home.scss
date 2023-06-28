@@ -410,7 +410,7 @@
                         background-color: white;
                         background-image: none;
                         width: max-content;
-                        padding: 1.3rem .8rem 0.8rem 1rem;
+                        padding: 0.8rem;
                         border-radius: 5px;
                         z-index: 40;
                         display: none;
@@ -422,14 +422,6 @@
                                 cursor: pointer;
                                 background-color: $color-light-gray;
                             }
-                        }
-
-                        img {
-                            width: 0.7rem;
-                            position: absolute;
-                            top: 9px;
-                            left: 9px;
-                            cursor: pointer;
                         }
                     }
 

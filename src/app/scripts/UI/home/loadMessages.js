@@ -1,4 +1,5 @@
 import { getChats } from "../../services/getChats";
+import { closeEditOrDeleteBtns, showEditOrDeleteBtns } from "./btnsEditAndDelete";
 const messagesContainer = document.getElementById('messagesContainer')
 let chatMessagesSeparatedByDate = [];
 
@@ -28,11 +29,10 @@ const loadMessages = async (idChat) => {
                     <p class="${sendById(message.sendBy, currentUser)}__message-container--message">${message.message}</p>
                     <p class="${sendById(message.sendBy, currentUser)}__message-container--hour">
                     ${new Date(message.hour).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
-                    <button class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete-btn">
+                    <button data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete-btn">
                         <img src="https://www.svgrepo.com/show/511356/arrow-down-338.svg" alt="arrow icon">
                     </button>
-                    <div class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete">
-                        <img src="https://www.svgrepo.com/show/438388/close.svg" alt="">
+                    <div data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete">
                         <p>Editar</p>
                         <p>Eliminar</p>
                     </div>
@@ -44,7 +44,11 @@ const loadMessages = async (idChat) => {
             })
         })
 
-    }
+        const btnEditOrDelete = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container--edit-or-delete-btn');
+        const optionsContainer = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container--edit-or-delete');
+        const closeEditOrDelete = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container--edit-or-delete-close');
+        showEditOrDeleteBtns(btnEditOrDelete, optionsContainer)
+    } 
 }
 
 const separateDatePerDay = (date, message) => {
