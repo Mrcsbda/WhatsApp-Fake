@@ -1,6 +1,6 @@
 import createNewChat from "../../services/createNewChat";
+import editMessages from "../../services/editMessages";
 import { getChats } from "../../services/getChats";
-import sendChatMessage from "../../services/sendChatMessage";
 
 const sendMessageIcon = document.getElementById('sendMessageIcon');
 const inputMessage = document.getElementById('inputMessage');
@@ -13,7 +13,7 @@ const sendMessage = () => {
         if (infoChat.currentChat) {
             const allMessages = infoChat.currentChat.messages;
             allMessages.push(infoChat.newMessage);
-            sendChatMessage(infoChat.currentChat.id, allMessages);
+            editMessages(infoChat.currentChat.id, allMessages, true);
             inputMessage.value = '';
         } else {
             createNewChat(infoChat.newChat)
