@@ -521,11 +521,11 @@
                 left: 0;
                 padding: 1rem 2rem;
                 background-color: white;
-                display: flex;
                 gap: 1rem;
                 display: none;
+                z-index: 11;
 
-                &--icon-edit {
+                &--icon-edit, &--icon-close {
                     width: 1.2rem;
                 }
 
@@ -697,8 +697,16 @@
     display: inline;
 }
 
+.edit-active-view {
+    display: flex;
+}
+
 .inactive-icon {
     display: none;
+}
+
+.btn-edit-sucess {
+    filter: none;
 }
 
 @media screen and (min-width: 1280px) {

@@ -1,5 +1,7 @@
 import { getChats } from "../../services/getChats";
 import { closeEditOrDeleteBtns, showEditOrDeleteBtns } from "./btnsEditAndDelete";
+import { getDeleteButtons } from "./deleteMessages";
+import { getEditButtons } from "./editMessages";
 const messagesContainer = document.getElementById('messagesContainer')
 let chatMessagesSeparatedByDate = [];
 
@@ -33,8 +35,8 @@ const loadMessages = async (idChat) => {
                         <img src="https://www.svgrepo.com/show/511356/arrow-down-338.svg" alt="arrow icon">
                     </button>
                     <div data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete">
-                        <p>Editar</p>
-                        <p>Eliminar</p>
+                        <p data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container-edit">Editar</p>
+                        <p data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container-delete" >Eliminar</p>
                     </div>
                 </div>
                 <div class="${sendById(message.sendBy, currentUser)}--rectangle"></div>
@@ -46,9 +48,12 @@ const loadMessages = async (idChat) => {
 
         const btnEditOrDelete = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container--edit-or-delete-btn');
         const optionsContainer = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container--edit-or-delete');
-        const closeEditOrDelete = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container--edit-or-delete-close');
+        const deleteButtons = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container-delete');
+        const editButtons = document.querySelectorAll('.main__chats-container__messages-container__sender__message-container-edit');
         showEditOrDeleteBtns(btnEditOrDelete, optionsContainer)
-    } 
+        getDeleteButtons(deleteButtons, optionsContainer)
+        getEditButtons(editButtons, optionsContainer)
+    }
 }
 
 const separateDatePerDay = (date, message) => {
