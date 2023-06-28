@@ -4,7 +4,7 @@ const contactProfile = document.querySelector('.main__profie-contact-container')
 const headerChat = document.querySelector('.main__chats-container__header__contact');
 const activeChat = document.querySelector('.main__chats-container');
 
-const printContactProfile = async (id=null) => {
+const printContactProfile = async (id = null) => {
     const contactId = localStorage.getItem('contactId');
     const data = await getUsers()
     let contactData = []
