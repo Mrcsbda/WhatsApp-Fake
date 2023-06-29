@@ -3,38 +3,27 @@ import { getChats } from "../../services/getChats";
 const inputSearch = document.getElementById('searchContact');
 
 export const searchByMessages = async() => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    if(!currentUser) return;
     const chats = await getChats()
     let filteredChats = []
-    let filteredMessages = []
-    let messages = {}
-    const currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
+    let messages = []
+    const currentUserId = currentUser.id;
 
-    inputSearch.addEventListener('keydown', debounce(() => {
-        filteredChats = chats.filter(chat => (chat.idUser1 === currentUserId) || (chat.idUser2 === currentUserId));
-        filteredMessages = filteredChats.filter(chat => {
-            chat.messages.forEach(message => {
-                if(message.message.includes(inputSearch.value)) {
-                    return messages = {
+    filteredChats = chats.filter(chat => (chat.idUser1 === currentUserId) || (chat.idUser2 === currentUserId));
+    filteredChats.forEach(chat => {
+        chat.messages.forEach(message => {
+            if(message.message.toLowerCase().includes(inputSearch.value.toLowerCase())) {
+                    messages.push({
                         sendBy: message.sendBy,
+                        received: chat.idUser1===message.sendBy?chat.idUser2:chat.idUser1,
                         message: message.message,
-                    }
-                }
-            });
-        })
-        console.log('mensajes filtrados')
-        console.log(filteredMessages)
-      }, 1000))
+                        chatId: chat.id,
+                    }) 
+            }
+        });
+    })
 
-      
+    return messages
 }
-
-const debounce = (callback, wait) => {
-    let timerId;
-    return (...args) => {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => {
-        callback(...args);
-      }, wait);
-    };
-  }
 

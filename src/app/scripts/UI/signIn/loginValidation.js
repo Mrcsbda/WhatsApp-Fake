@@ -26,6 +26,7 @@ const loginValidation = async (homeContainer,loginContainer) => {
             homeContainer.classList.add('home-active');
             localStorage.setItem("userCurrentState", "home");
             localStorage.setItem("currentUser", JSON.stringify(userFound));
+            form.reset()
             patchUsers(userFound.id, true)
             loadLastMessage()
             printListChats()

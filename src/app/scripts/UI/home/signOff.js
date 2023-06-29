@@ -15,7 +15,8 @@ const signOff = (homeContainer, loginContainer) => {
 const removeStorageData = () => {
     localStorage.removeItem("userCurrentState");
     localStorage.removeItem("currentUser");
-    localStorage.removeItem("userId");
+    localStorage.removeItem("contactId");
+
 }
 
 export default signOff;

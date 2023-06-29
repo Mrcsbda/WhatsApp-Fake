@@ -2,6 +2,7 @@ import { getChats } from "../../services/getChats"
 import { getUsers } from "../../services/getUsers"
 import loadMessages from "./loadMessages"
 import printContactProfile from "./printProfileContact"
+import { searchByMessages } from "./searchByMessage";
 
 const activeChat = document.querySelector('.main__chats-container');
 const listChatsContainer = document.getElementById('listChatsContainer');
@@ -25,7 +26,8 @@ const printListChats = async (infoFiltered = null) => {
         dataUsersWithChats = getChatsByUser(dataUsers)
         renderChats(dataUsersWithChats)
     } else if (infoFiltered && infoFiltered.length === 0) {
-   
+        const filteredMessages = await searchByMessages();
+        renderChatsByMessages(filteredMessages, users)
     } else {
         dataUsers = {
             users,
@@ -133,5 +135,45 @@ const renderChats = (array) => {
     listChats.forEach(chat => {
         showCurrentChat(chat);
     })
+}
+
+const renderChatsByMessages = (filteredMessages, users) => {
+    listChatsContainer.innerHTML = "";
+    const currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
+    console.log(filteredMessages)
+    filteredMessages.forEach(message => {
+        listChatsContainer.innerHTML += `
+        <div class="main__left-side__chats-container__chats__contact-chat" user-id="${message.sendBy===currentUserId?message.received:message.sendBy}" chat-id="${message.chatId}">
+            <div class="main__left-side__chats-container__chats__contact-chat__conversation-container">
+                <p
+                        class="main__left-side__chats-container__chats__contact-chat__conversation-container__information">
+                        <span
+                            class="main__left-side__chats-container__chats__contact-chat__conversation-container__information--name">${validationUser(message.sendBy,currentUserId,users)}</span>
+                </p>
+                <p
+                        class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation">
+                        <img class="inactive-icon main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"
+                            src="https://www.svgrepo.com/show/445629/check-all.svg" alt="viewed icon">
+                        <span
+                                class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message">
+                                ${message.message}</span>
+                </p>
+            </div>
+        </div>
+        `
+    })
+
+    const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
+    listChats.forEach(chat => {
+        showCurrentChat(chat);
+    })
+}
+
+const validationUser = (messageSendBy, currentUserId, users) => {
+    return messageSendBy === currentUserId ? "Tú" : users.find(user => user.id === messageSendBy).name
+}
+
+const validationIdContact = (contact) => {
+
 }
 export default printListChats;
