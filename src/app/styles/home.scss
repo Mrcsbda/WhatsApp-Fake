@@ -496,6 +496,13 @@
             gap: 0.7rem;
             position: relative;
 
+            &__btnSubmit {
+                display: flex;
+                background-color: $color-light-gray;
+                border: none;
+                align-items: center;
+            }
+
             &--emojis-icon,
             &--media-icon,
             &--microphone-icon,

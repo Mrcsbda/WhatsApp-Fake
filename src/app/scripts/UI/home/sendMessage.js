@@ -3,12 +3,14 @@ import editMessages from "../../services/editMessages";
 import { getChats } from "../../services/getChats";
 import { editMessage } from "./editMessage";
 
+const formMessage = document.getElementById("formMessage");
 const sendMessageIcon = document.getElementById('sendMessageIcon');
 const inputMessage = document.getElementById('inputMessage');
 const editContainer = document.querySelector('.main__chats-container__footer__edit-message-container');
 
 const sendMessage = () => {
-    sendMessageIcon.addEventListener('click', async () => {
+    formMessage.addEventListener('submit', async (event) => {
+        event.preventDefault();
         const infoChat = await getInfoChat();
         const messageToEditId = JSON.parse(localStorage.getItem('messageToEditId'));
 
