@@ -30,39 +30,7 @@ const printListChats = async (infoFiltered = null) => {
     }
     
     const dataUsersWithChats = getChatsByUser(dataUsers)
-    listChatsContainer.innerHTML = "";
-    
-    dataUsersWithChats.forEach(user => {
-        listChatsContainer.innerHTML += `
-        <div class="main__left-side__chats-container__chats__contact-chat" user-id="${user.dataUser.id}" chat-id="${!user.dataChat ? 0 : user.dataChat.id}">
-            <img class="main__left-side__chats-container__chats__contact-chat--profile-picture"
-                    src="${user.dataUser.image}" alt="">
-            <div class="main__left-side__chats-container__chats__contact-chat__conversation-container">
-                <p
-                        class="main__left-side__chats-container__chats__contact-chat__conversation-container__information">
-                        <span
-                            class="main__left-side__chats-container__chats__contact-chat__conversation-container__information--name">${user.dataUser.name}</span>
-                        <span
-                            class="main__left-side__chats-container__chats__contact-chat__conversation-container__information--date">
-                            ${getLastTimeMessage(user.dataChat)}</span>
-                </p>
-                <p
-                        class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation">
-                        <img class="${!user.dataChat ||!user.dataChat.messages.length? "inactive-icon" : "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"}"
-                            src="https://www.svgrepo.com/show/445629/check-all.svg" alt="viewed icon">
-                        <span
-                                class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message">
-                                ${getLastMessage(user.dataChat)}</span>
-                </p>
-            </div>
-        </div>
-        `
-    })
-
-    const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
-    listChats.forEach(chat => {
-        showCurrentChat(chat);
-    })
+    renderChats(dataUsersWithChats)
 }
 
 const getChatsByUser = ({ users, chats, currentUser }) => {
@@ -125,4 +93,39 @@ const closeViewActive = () => {
     editContainer.classList.remove('edit-active-view')
 }
 
+const renderChats = (array) => {
+    listChatsContainer.innerHTML = "";
+    
+    array.forEach(user => {
+        listChatsContainer.innerHTML += `
+        <div class="main__left-side__chats-container__chats__contact-chat" user-id="${user.dataUser.id}" chat-id="${!user.dataChat ? 0 : user.dataChat.id}">
+            <img class="main__left-side__chats-container__chats__contact-chat--profile-picture"
+                    src="${user.dataUser.image}" alt="">
+            <div class="main__left-side__chats-container__chats__contact-chat__conversation-container">
+                <p
+                        class="main__left-side__chats-container__chats__contact-chat__conversation-container__information">
+                        <span
+                            class="main__left-side__chats-container__chats__contact-chat__conversation-container__information--name">${user.dataUser.name}</span>
+                        <span
+                            class="main__left-side__chats-container__chats__contact-chat__conversation-container__information--date">
+                            ${getLastTimeMessage(user.dataChat)}</span>
+                </p>
+                <p
+                        class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation">
+                        <img class="${!user.dataChat ||!user.dataChat.messages.length? "inactive-icon" : "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"}"
+                            src="https://www.svgrepo.com/show/445629/check-all.svg" alt="viewed icon">
+                        <span
+                                class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message">
+                                ${getLastMessage(user.dataChat)}</span>
+                </p>
+            </div>
+        </div>
+        `
+    })
+
+    const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
+    listChats.forEach(chat => {
+        showCurrentChat(chat);
+    })
+}
 export default printListChats;
