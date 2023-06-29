@@ -3,6 +3,7 @@ import { activeViews } from './UI/home/btnsActiveViews.js'
 import { closeEditContainer } from "./UI/home/closeEditMessage";
 import loadLastMessage from "./UI/home/loadLastMessages";
 import printListChats from "./UI/home/printListChats";
+import { searchContact } from "./UI/home/searchContact";
 import sendMessage from "./UI/home/sendMessage";
 import signOff from "./UI/home/signOff";
 import printSignUp from "./UI/signIn/loadSignUp";
@@ -41,3 +42,4 @@ printLogin(loginContainer, signUpContainer)
 signOff(homeContainer,loginContainer)
 loadLastMessage()
 closeEditContainer()
+searchContact()

@@ -9,7 +9,7 @@ const editContainer = document.querySelector('.main__chats-container__footer__ed
 const sendMessageIcon = document.getElementById('sendMessageIcon');
 
 
-const printListChats = async () => {
+const printListChats = async (infoFiltered = null) => {
     const users = await getUsers()
     const chats = await getChats()
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
