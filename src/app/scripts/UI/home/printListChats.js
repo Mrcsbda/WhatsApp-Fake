@@ -13,12 +13,23 @@ const printListChats = async (infoFiltered = null) => {
     const users = await getUsers()
     const chats = await getChats()
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const data = {
-        users,
-        chats,
-        currentUser
+    let dataUsers = {}
+
+    if(infoFiltered) {
+        dataUsers = {
+            users: infoFiltered,
+            chats,
+            currentUser
+        }
+    } else {
+        dataUsers = {
+            users,
+            chats,
+            currentUser
+        }
     }
-    const dataUsersWithChats = getChatsByUser(data)
+    
+    const dataUsersWithChats = getChatsByUser(dataUsers)
     listChatsContainer.innerHTML = "";
     
     dataUsersWithChats.forEach(user => {

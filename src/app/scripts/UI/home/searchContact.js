@@ -1,4 +1,5 @@
 import { getUsers } from "../../services/getUsers";
+import printListChats from "./printListChats";
 
 const inputSearch = document.getElementById('searchContact');
 
@@ -8,9 +9,9 @@ export const searchContact = async () => {
     console.log(users)
     let filteredUsers = []
     inputSearch.addEventListener('keydown', debounce(() => {
-        filteredUsers = users.filter(user => user.name.includes(inputSearch.value))
-        console.log(inputSearch.value)
-        console.log(filteredUsers)
+        filteredUsers = users.filter(user => user.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
+
+        printListChats(filteredUsers)
       }, 1000))
    
 }
