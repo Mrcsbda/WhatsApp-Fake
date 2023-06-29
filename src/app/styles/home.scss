@@ -389,12 +389,22 @@
                     align-items: flex-end;
                     max-width: 50vw;
                     background-color: $color-tea-green;
-                    padding: 0.5rem 1rem 0.5rem 1.7rem;
+                    padding: 0.5rem 1rem 0.5rem 1.8rem;
                     border-radius: 5px 0px 5px 5px;
                     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(173, 173, 173, 0.3) 0px 1px 3px -1px;
 
                     &--message {
                         font-size: 0.9rem;
+                    }
+
+                    &--check-and-hour {
+                        display: flex;
+                        gap: 0.3rem;
+                    }
+
+                    &--check {
+                        width: 1rem;
+                        filter: invert(65%) sepia(4%) saturate(17%) hue-rotate(3deg) brightness(91%) contrast(78%);
                     }
 
                     &--hour {
@@ -427,7 +437,7 @@
 
                     &--edit-or-delete-btn {
                         position: absolute;
-                        left: 0.5rem;
+                        left: 0.7rem;
                         background-color: rgba(255, 255, 255, 0);
                         border: none;
                         cursor: pointer;
@@ -471,6 +481,10 @@
                         font-size: 0.7rem;
                         color: $color-gunmetal;
                         opacity: 0.5;
+                    }
+
+                    &--check {
+                        display: none;;
                     }
 
                     &--edit-or-delete,

@@ -1,7 +1,7 @@
 import { getChats } from "../../services/getChats";
 import { showEditOrDeleteBtns } from "./btnsEditAndDelete";
 import { getDeleteButtons } from "./deleteMessages";
-import { getEditButtons,  } from "./editMessage";
+import { getEditButtons, } from "./editMessage";
 const messagesContainer = document.getElementById('messagesContainer')
 let chatMessagesSeparatedByDate = [];
 
@@ -9,7 +9,7 @@ const loadMessages = async (idChat) => {
     const chats = await getChats();
     const currentChat = chats.find(chat => chat.id == idChat);
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    
+
     messagesContainer.innerHTML = "";
     chatMessagesSeparatedByDate = [];
 
@@ -29,8 +29,12 @@ const loadMessages = async (idChat) => {
                 <div class="${sendById(message.sendBy, currentUser)}">
                 <div class="${sendById(message.sendBy, currentUser)}__message-container">
                     <p class="${sendById(message.sendBy, currentUser)}__message-container--message">${message.message}</p>
-                    <p class="${sendById(message.sendBy, currentUser)}__message-container--hour">
-                    ${new Date(message.hour).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                    <div class="${sendById(message.sendBy, currentUser)}__message-container--check-and-hour">
+                        <p class="${sendById(message.sendBy, currentUser)}__message-container--hour">
+                         ${new Date(message.hour).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                        <img src="https://www.svgrepo.com/show/445629/check-all.svg" alt="icon check" 
+                        class="${sendById(message.sendBy, currentUser)}__message-container--check">
+                    </div>
                     <button data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete-btn">
                         <img src="https://www.svgrepo.com/show/511356/arrow-down-338.svg" alt="arrow icon">
                     </button>
