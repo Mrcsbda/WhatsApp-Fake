@@ -14,23 +14,29 @@ const printListChats = async (infoFiltered = null) => {
     const chats = await getChats()
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let dataUsers = {}
+    let dataUsersWithChats = '';
 
-    if(infoFiltered) {
+    if(infoFiltered && infoFiltered.length !== 0) {
         dataUsers = {
             users: infoFiltered,
             chats,
             currentUser
         }
+        dataUsersWithChats = getChatsByUser(dataUsers)
+        renderChats(dataUsersWithChats)
+    } else if (infoFiltered && infoFiltered.length === 0) {
+   
     } else {
         dataUsers = {
             users,
             chats,
             currentUser
         }
+        dataUsersWithChats = getChatsByUser(dataUsers)
+        renderChats(dataUsersWithChats)
     }
     
-    const dataUsersWithChats = getChatsByUser(dataUsers)
-    renderChats(dataUsersWithChats)
+   
 }
 
 const getChatsByUser = ({ users, chats, currentUser }) => {
