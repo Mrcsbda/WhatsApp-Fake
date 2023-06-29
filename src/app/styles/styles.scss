@@ -13,6 +13,12 @@ button.swal2-confirm.swal2-styled {
     display: flex;
 }
 
+.focus-message {
+    &:focus {
+        background-color: aquamarine;
+    }
+}
+
 @media screen and (max-width: 1280px) {
     .home-active {
         display: inline;

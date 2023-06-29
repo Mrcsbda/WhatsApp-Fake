@@ -19,6 +19,7 @@ export const searchByMessages = async() => {
                         received: chat.idUser1===message.sendBy?chat.idUser2:chat.idUser1,
                         message: message.message,
                         chatId: chat.id,
+                        id: message.id,
                     }) 
             }
         });

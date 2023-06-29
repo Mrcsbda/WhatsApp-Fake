@@ -81,13 +81,19 @@ const getLastMessage = (dataChat) => {
     return !dataChat||!dataChat.messages.length ? " " : dataChat.messages[dataChat.messages.length - 1].message;
 }
 
-const showCurrentChat = (currentChat) => {
+const showCurrentChat = (currentChat, idMessage = null) => {
     currentChat.addEventListener('click', () => {
         const userId = currentChat.getAttribute("user-id");
-        const chatId = currentChat.getAttribute("chat-id")
+        const chatId = currentChat.getAttribute("chat-id");
         activeChat.classList.add('active-view')
         localStorage.setItem('contactId', userId)
-        loadMessages(chatId)
+        if(idMessage) {
+            loadMessages(chatId)
+            localStorage.setItem('idMessages', idMessage)
+        } else {
+            loadMessages(chatId)
+        }
+
         printContactProfile()
         closeViewActive()
     })
@@ -155,7 +161,7 @@ const renderChatsByMessages = (filteredMessages, users) => {
                         <img class="inactive-icon main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"
                             src="https://www.svgrepo.com/show/445629/check-all.svg" alt="viewed icon">
                         <span
-                                class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message">
+                                class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message" message-id="${message.id}">
                                 ${message.message}</span>
                 </p>
             </div>
@@ -165,7 +171,12 @@ const renderChatsByMessages = (filteredMessages, users) => {
 
     const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
     listChats.forEach(chat => {
-        showCurrentChat(chat);
+        const message = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message');
+        message.forEach(message => {
+            const messageId = message.getAttribute('message-id')
+            showCurrentChat(chat, messageId);
+        })
+        
     })
 }
 
@@ -173,7 +184,4 @@ const validationUser = (messageSendBy, currentUserId, users) => {
     return messageSendBy === currentUserId ? "Tú" : users.find(user => user.id === messageSendBy).name
 }
 
-const validationIdContact = (contact) => {
-
-}
 export default printListChats;
