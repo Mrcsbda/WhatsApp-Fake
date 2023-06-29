@@ -1,10 +1,13 @@
+import editInfoUser from "./editInfoUsers";
 
-const user = JSON.parse(localStorage.getItem('currentUser'));
+
 const container = document.getElementById('userProfile');
 const containerImage = document.querySelector('.main__left-side__chats-container__user-picture-container');
 
 const printInfoUsers = () => {
 
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    
     containerImage.innerHTML = `
     <img class="main__left-side__chats-container__user-picture-container--picture" src="${user.image}" alt="profile picture" id="userProfilePicture">
     `;
@@ -19,17 +22,17 @@ const printInfoUsers = () => {
                 <div class="main__left-side__profile-container__profile-picture-container__profile-picture">
                     <img class="main__left-side__profile-container__profile-picture-container__profile-picture--img"
                         src="${user.image}" alt="profile picture">
-                    <div>Cambiar imagen</div>
+                    <div class="edit-image">Cambiar imagen</div>
                 </div>
 
-                <p class="main__left-side__profile-container__profile-picture-container--change-picture">Cambiar
+                <p class="main__left-side__profile-container__profile-picture-container--change-picture edit-image">Cambiar
                     foto de perfil</p>
-                <div class="main__left-side__profile-container__profile-picture-container__profile-picture-url">
+                <div class="main__left-side__profile-container__profile-picture-container__profile-picture-url" id="container__image-input">
                     <input
                         class="main__left-side__profile-container__profile-picture-container__profile-picture-url--input"
-                        type="url" placeholder="URL de la nueva foto">
+                        type="url" placeholder="URL de la nueva foto" id="input-url-image">
                     <button
-                        class="main__left-side__profile-container__profile-picture-container__profile-picture-url--btn">Cambiar</button>
+                        class="main__left-side__profile-container__profile-picture-container__profile-picture-url--btn" id="btn-image" data-id=${user.id}>Cambiar</button>
                 </div>
             </div>
             <div class="main__left-side__profile-container__name-container">
@@ -37,11 +40,11 @@ const printInfoUsers = () => {
                 <div class="main__left-side__profile-container__name-container__edit-name-container">
                     <p class="main__left-side__profile-container__name-container__edit-name-container--name">${user.name}</p>
                     <input type="text"
-                        class="main__left-side__profile-container__name-container__edit-name-container--input">
+                        class="main__left-side__profile-container__name-container__edit-name-container--input" id="input-name">
                     <img src="https://www.svgrepo.com/show/501933/edit-major.svg" alt="edit icon"
-                        class="main__left-side__profile-container__name-container__edit-name-container--icon-edit edit-nombre">
+                        class="main__left-side__profile-container__name-container__edit-name-container--icon-edit edit-name">
                 </div>
-                <button class="main__left-side__profile-container__name-container--save-changes">Guardar
+                <button class="main__left-side__profile-container__name-container--save-changes" id="btn-name" data-id=${user.id}>Guardar
                     cambios</button>
             </div>
             <div class="main__left-side__profile-container__status-container">
@@ -49,11 +52,11 @@ const printInfoUsers = () => {
                 <div class="main__left-side__profile-container__status-container__edit-status-container">
                     <p class="main__left-side__profile-container__status-container__edit-status-container--status">${user.info}</p>
                     <input type="text"
-                        class="main__left-side__profile-container__status-container__edit-status-container--input">
+                        class="main__left-side__profile-container__status-container__edit-status-container--input" id="input-info">
                     <img src="https://www.svgrepo.com/show/501933/edit-major.svg" alt="edit icon"
-                        class="main__left-side__profile-container__status-container__edit-status-container--icon-edit">
+                        class="main__left-side__profile-container__status-container__edit-status-container--icon-edit edit-info">
                 </div>
-                <button class="main__left-side__profile-container__status-container--save-changes">Guardar
+                <button class="main__left-side__profile-container__status-container--save-changes" id="btn-info" data-id=${user.id}>Guardar
                     cambios</button>
             </div>
             <div class="main__left-side__profile-container__sign-off">
@@ -61,8 +64,46 @@ const printInfoUsers = () => {
             </div>
     `;
 
+    const editImage = document.querySelectorAll('.edit-image');
+    const containerInputImage = document.getElementById('container__image-input');
+    const editName = document.querySelector('.edit-name');
+    const inputName = document.getElementById('input-name');
+    const btnName = document.getElementById('btn-name');
+    const editInfo = document.querySelector('.edit-info');
+    const inputInfo = document.getElementById('input-info');
+    const btnInfo = document.getElementById('btn-info');
     const closeUserProfileBtn = document.getElementById('closeProfile')
     const viewUserProfileBtn = document.getElementById('userProfilePicture')
+
+    editImage.forEach(button => {
+        button.addEventListener('click', () => {
+            containerInputImage.classList.add('active-view')
+            const inputUrlImage = document.getElementById('input-url-image')
+            const btnImage = document.getElementById('btn-image');
+            btnImage.addEventListener('click', () => {
+                const idUser = btnName.getAttribute('data-id');
+                editInfoUser(inputUrlImage.value, idUser, 'image') 
+            });
+        });
+    });
+
+    editName.addEventListener('click', () =>{
+        inputName.classList.add('active-view');
+        btnName.classList.add('active-view');
+        btnName.addEventListener('click', () => {
+            const idUser = btnName.getAttribute('data-id');
+            editInfoUser(inputName.value, idUser, 'name');
+        });
+    });
+
+    editInfo.addEventListener('click', () => {
+        inputInfo.classList.add('active-view');
+        btnInfo.classList.add('active-view');
+        btnInfo.addEventListener('click', () => {
+            const idUser = btnName.getAttribute('data-id');
+            editInfoUser(inputInfo.value, idUser, 'info');
+        });
+    });
 
     viewUserProfileBtn.addEventListener('click', () => {
         container.classList.add('active-view')
@@ -72,5 +113,6 @@ const printInfoUsers = () => {
         container.classList.remove('active-view')
     })
 }
+
 
 export default printInfoUsers;

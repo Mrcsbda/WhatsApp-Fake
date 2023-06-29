@@ -1,5 +1,6 @@
 import "../styles/styles.scss"
 import { activeViews } from './UI/home/btnsActiveViews.js'
+import editInfoUser from "./UI/home/editInfoUsers";
 import printInfoUsers from "./UI/home/printInfoUsers";
 import printListChats from "./UI/home/printListChats";
 import sendMessage from "./UI/home/sendMessage";
@@ -17,8 +18,6 @@ const userCurrentState = localStorage.getItem("userCurrentState");
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    
-
     switch (true) {
         case !userCurrentState:
             loginContainer.classList.add('login-active')
@@ -32,15 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
         default:
             break;
     }
+
 })
+
+
 
 activeViews()
 sendMessage()
 printInfoUsers()
 printListChats()
 registerUser(loginContainer, signUpContainer)
-loginValidation(homeContainer,loginContainer)
-printSignUp(loginContainer,signUpContainer)
+loginValidation(homeContainer, loginContainer)
+printSignUp(loginContainer, signUpContainer)
 printLogin(loginContainer, signUpContainer)
 // signOff(homeContainer,loginContainer)
 
