@@ -1,5 +1,6 @@
 import { getUsers } from "../../services/getUsers"
 import { patchUsers } from "../../services/patchUsers";
+import loadLastMessage from "../home/loadLastMessages";
 import printListChats from "../home/printListChats";
 import validationAlerts from "../validationAlerts";
 
@@ -25,7 +26,9 @@ const loginValidation = async (homeContainer,loginContainer) => {
             homeContainer.classList.add('home-active');
             localStorage.setItem("userCurrentState", "home");
             localStorage.setItem("currentUser", JSON.stringify(userFound));
+            form.reset()
             patchUsers(userFound.id, true)
+            loadLastMessage()
             printListChats()
         }
     })

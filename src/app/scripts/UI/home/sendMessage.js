@@ -1,19 +1,30 @@
 import createNewChat from "../../services/createNewChat";
+import editMessages from "../../services/editMessages";
 import { getChats } from "../../services/getChats";
-import sendChatMessage from "../../services/sendChatMessage";
+import { editMessage } from "./editMessage";
 
+const formMessage = document.getElementById("formMessage");
 const sendMessageIcon = document.getElementById('sendMessageIcon');
 const inputMessage = document.getElementById('inputMessage');
+const editContainer = document.querySelector('.main__chats-container__footer__edit-message-container');
 
 const sendMessage = () => {
-    sendMessageIcon.addEventListener('click', async () => {
+    formMessage.addEventListener('submit', async (event) => {
+        event.preventDefault();
         const infoChat = await getInfoChat();
-        console.log(infoChat)
+        const messageToEditId = JSON.parse(localStorage.getItem('messageToEditId'));
+
         if(inputMessage.value === '') return
-        if (infoChat.currentChat) {
+
+        if (messageToEditId) {
+            const currentChat = await editMessage()
+            editMessages(currentChat.id, currentChat.messages, false);
+            closeViewActive()
+            localStorage.removeItem('messageToEditId')
+        } else if (infoChat.currentChat) {
             const allMessages = infoChat.currentChat.messages;
             allMessages.push(infoChat.newMessage);
-            sendChatMessage(infoChat.currentChat.id, allMessages);
+            editMessages(infoChat.currentChat.id, allMessages, true);
             inputMessage.value = '';
         } else {
             createNewChat(infoChat.newChat)
@@ -26,7 +37,7 @@ const getInfoChat = async () => {
     const chats = await getChats();
     const currentDay = new Date().getTime();
     const idCurrentUser = JSON.parse(localStorage.getItem('currentUser')).id;
-    const idContact = +localStorage.getItem('userId');
+    const idContact = +localStorage.getItem('contactId');
     const currentChat = chats.find(chat =>
         (chat.idUser1 === idCurrentUser || chat.idUser2 === idCurrentUser) &&
         (idContact === chat.idUser1 || idContact === chat.idUser2))
@@ -54,4 +65,9 @@ const getInfoChat = async () => {
 
 }
 
+const closeViewActive = () => {
+    sendMessageIcon.setAttribute('src', 'https://www.svgrepo.com/show/505493/send-2.svg')
+    sendMessageIcon.classList.remove('btn-edit-sucess')
+    editContainer.classList.remove('edit-active-view')
+}
 export default sendMessage;
