@@ -13,7 +13,7 @@ export const searchContact = async () => {
       }, 1000))
 }
 
-const debounce = (callback, wait) => {
+export const debounce = (callback, wait) => {
     let timerId;
     return (...args) => {
       clearTimeout(timerId);

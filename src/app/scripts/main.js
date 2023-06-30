@@ -1,5 +1,4 @@
 import "../styles/styles.scss"
-import { activeViews } from './UI/home/btnsActiveViews.js'
 import printInfoUsers from "./UI/home/printInfoUsers";
 import { closeEditContainer } from "./UI/home/closeEditMessage";
 import loadLastMessage from "./UI/home/loadLastMessages";
@@ -10,6 +9,7 @@ import printSignUp from "./UI/signIn/loadSignUp";
 import loginValidation from "./UI/signIn/loginValidation.js";
 import registerUser from "./UI/signUp/registerUsers";
 import printLogin from "./UI/signUp/returnLogin";
+import { searchMessages } from "./UI/home/searchMessages";
 
 const homeContainer = document.querySelector('.main');
 const loginContainer = document.querySelector('.main-sign-in');
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 printInfoUsers()
-activeViews()
 printListChats()
 sendMessage()
 registerUser(loginContainer, signUpContainer)
@@ -43,4 +42,5 @@ printLogin(loginContainer, signUpContainer)
 loadLastMessage()
 closeEditContainer()
 searchContact()
+searchMessages()
 

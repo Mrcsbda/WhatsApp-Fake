@@ -70,21 +70,18 @@ const loadMessages = async (idChat) => {
 const separateDatePerDay = (date, message) => {
     const today = new Date().setHours(0, 0, 0, 0);
     const sentDate = new Date(date).setHours(0, 0, 0, 0);
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
 
     let dayPreviousExists = chatMessagesSeparatedByDate.findIndex(
         (chatMessage) =>
             chatMessage.day ===
-            getDayLabel(sentDate, today, yesterday)
+            getDayLabel(sentDate, today)
     );
 
     if (dayPreviousExists === -1) {
         chatMessagesSeparatedByDate.push({
             day: getDayLabel(
                 sentDate,
-                today,
-                yesterday
+                today
             ),
             messages: [],
         });
@@ -94,11 +91,10 @@ const separateDatePerDay = (date, message) => {
     chatMessagesSeparatedByDate[dayPreviousExists].messages.push(message);
 }
 
-const getDayLabel = (sentDate, today, yesterday) => {
+export const getDayLabel = (sentDate, today) => {
 
-    if (sentDate === today) return 'Hoy';
-    if (sentDate === yesterday) {
-        return 'Ayer';
+    if (sentDate === today) {
+        return 'Hoy';
     } else {
         return new Date(sentDate).toLocaleDateString();
     }
@@ -147,7 +143,6 @@ const viewedMessage = (currentChat, currentUser) => {
         }
         return message
     })
-
     editMessages(currentChat.id, viewedMessages, false);
 }
 

@@ -693,6 +693,8 @@
         }
 
         &__leaked-messages {
+            height: calc(100vh - 57px - 89.55px);
+            overflow-x: auto;
             &__messages {
                 padding: 1rem;
                 border-bottom: 1px solid $color-light-gray;
@@ -707,11 +709,6 @@
                     display: flex;
                     align-items: flex-start;
                     gap: 0.5rem;
-
-                    img {
-                        width: 1.2rem;
-                        filter: invert(63%) sepia(0%) saturate(0%) hue-rotate(56deg) brightness(94%) contrast(86%);
-                    }
                 }
 
             }
@@ -977,14 +974,12 @@
             }
 
             &__leaked-messages {
+                height: calc(100vh - 100.38px - 89.55px);
                 &__messages {
-
-                    &--info {
-                        img {
-                            width: 1.3rem;
-                        }
+                    &:hover {
+                        cursor: pointer;
+                        background-color: rgb(243, 243, 243);
                     }
-
                 }
 
             }

@@ -3,6 +3,7 @@ import { getUsers } from "../../services/getUsers"
 import loadMessages from "./loadMessages"
 import printContactProfile from "./printProfileContact"
 import { searchByMessages } from "./searchByMessage";
+import { searchMessages } from "./searchMessages";
 
 const inputSearch = document.getElementById('searchContact');
 const activeChat = document.querySelector('.main__chats-container');
@@ -91,11 +92,12 @@ const showCurrentChat = (currentChat, boolean) => {
         if (boolean) {
             loadMessages(chatId)
             const messageId = currentChat.querySelector('.main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message')
-                .getAttribute("message-id");
+            .getAttribute("message-id");
             localStorage.setItem('idMessages', messageId)
         } else {
             loadMessages(chatId)
         }
+        searchMessages()
         printContactProfile()
         closeViewActive()
         printListChats()
@@ -104,12 +106,17 @@ const showCurrentChat = (currentChat, boolean) => {
 
 }
 
-const closeViewActive = () => {
+export const closeViewActive = () => {
     const contactProfile = document.querySelector('.main__profie-contact-container')
+    const userProfile = document.getElementById('userProfile')
+    const messagesSearch = document.querySelector('.main__messages-search-container')
     contactProfile.classList.remove('active-view');
     sendMessageIcon.setAttribute('src', 'https://www.svgrepo.com/show/505493/send-2.svg')
     sendMessageIcon.classList.remove('btn-edit-sucess')
     editContainer.classList.remove('edit-active-view')
+    userProfile.classList.remove('active-view')
+    messagesSearch.classList.remove('active-view')
+    localStorage.removeItem('messageToEditId')
 }
 
 const renderChats = (array, currentUser) => {
