@@ -7,6 +7,7 @@ const messagesSearchBtn = document.querySelector('.main__chats-container__header
 const closeMessagesSearch = document.querySelector('.main__messages-search-container__header--close')
 const messagesContainer = document.querySelector('.main__messages-search-container__leaked-messages')
 const searchMessage = document.getElementById('searchMessage')
+const cancelSearch = document.getElementById('cancelSearch')
 
 export const searchMessages = async () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
@@ -20,6 +21,7 @@ export const searchMessages = async () => {
         renderMessages(filteredMessages.reverse(), currentChat.id)
         filteredMessages = [];
     }, 1000))
+    resetSearch(currentChat.messages)
 }
 
 const showMessages = () => {
@@ -73,4 +75,11 @@ const getCurrentChat = async (currentUser) => {
         (chat.idUser1 === +currentUser.id || chat.idUser2 === +currentUser.id) &&
         (chat.idUser1 === contactId || chat.idUser2 === contactId))
     return currentChat
+}
+
+const resetSearch = (messages) => {
+    cancelSearch.addEventListener('click', () => {
+        searchMessage.value = '';
+        renderMessages(messages.reverse());
+    })
 }
