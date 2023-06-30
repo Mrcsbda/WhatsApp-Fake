@@ -14,9 +14,15 @@ button.swal2-confirm.swal2-styled {
 }
 
 .focus-message {
-    &:focus {
-        background-color: aquamarine;
-    }
+    background-image: linear-gradient(0deg,rgba(128, 128, 128, 0.267) 50%, rgba(128, 128, 128, 0.267) 50%);
+}
+
+.main__chats-container__messages-container__sender--rectangle-focus-message {
+    background-image: linear-gradient(130deg, rgba(128, 128, 128, 0.267) 50%, rgba(255, 255, 255, 0) 50%);
+}
+
+.main__chats-container__messages-container__receiver--rectangle-focus-message {
+    background-image: linear-gradient(220deg, rgba(128, 128, 128, 0.267) 50%, rgba(255, 255, 255, 0) 50%);
 }
 
 @media screen and (max-width: 1280px) {
