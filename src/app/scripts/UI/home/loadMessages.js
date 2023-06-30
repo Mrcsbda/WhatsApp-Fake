@@ -1,3 +1,4 @@
+import editMessages from "../../services/editMessages";
 import { getChats } from "../../services/getChats";
 import { showEditOrDeleteBtns } from "./btnsEditAndDelete";
 import { getDeleteButtons } from "./deleteMessages";
@@ -27,7 +28,7 @@ const loadMessages = async (idChat) => {
             chat.messages.forEach(message => {
                 messagesContainer.innerHTML += `
                 <div class="${sendById(message.sendBy, currentUser)}">
-                <div class="${sendById(message.sendBy, currentUser)}__message-container ${focusMessage(message.id)}">
+                <div class="${sendById(message.sendBy, currentUser)}__message-container ${isFocusMessage(message.id)}">
                     <p class="${sendById(message.sendBy, currentUser)}__message-container--message">${message.message}</p>
                     <div class="${sendById(message.sendBy, currentUser)}__message-container--check-and-hour">
                         <p class="${sendById(message.sendBy, currentUser)}__message-container--hour">
@@ -43,7 +44,7 @@ const loadMessages = async (idChat) => {
                         <p data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container-delete" >Eliminar</p>
                     </div>
                 </div>
-                <div class="${sendById(message.sendBy, currentUser)}--rectangle ${sendById(message.sendBy, currentUser)}--rectangle-${focusMessage(message.id)} ${focusMessage(message.id)}-rectangle"></div>
+                <div class="${sendById(message.sendBy, currentUser)}--rectangle ${sendById(message.sendBy, currentUser)}--rectangle-${isFocusMessage(message.id)} ${isFocusMessage(message.id)}-rectangle"></div>
                 </div>
                 
                 `
@@ -57,27 +58,13 @@ const loadMessages = async (idChat) => {
         const focusMessageItem = document.querySelector('.focus-message')
         const focusMessageRectangule = document.querySelector('.focus-message-rectangle')
 
-        if (focusMessageItem) {
-            messagesContainer.focus();
-            focusMessageItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => {
-                focusMessageItem.classList.remove('focus-message')
-                focusMessageRectangule.classList.remove('main__chats-container__messages-container__sender--rectangle-focus-message')
-                focusMessageRectangule.classList.remove('main__chats-container__messages-container__receiver--rectangle-focus-message')
-                localStorage.removeItem('idMessages')
-              }, "500");
-        } else {
-            messagesContainer.focus();
-            const currentMessages = Array.from(messagesContainer.children)
-            if(!currentMessages.length) return;
-            currentMessages[currentMessages.length-1].scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-          
-
+        focusMessage(focusMessageItem, focusMessageRectangule)
         showEditOrDeleteBtns(btnEditOrDelete, optionsContainer)
         getDeleteButtons(deleteButtons, optionsContainer)
         getEditButtons(editButtons, optionsContainer)
     }
+
+    viewedMessage(currentChat, currentUser)
 }
 
 const separateDatePerDay = (date, message) => {
@@ -127,10 +114,43 @@ const sendById = (sendById, currentUser) => {
     }
 }
 
-const focusMessage = (messageId) => {
+const isFocusMessage = (messageId) => {
     const focusMessageId = Number(localStorage.getItem('idMessages'))
     if (!focusMessageId) return;
     return messageId===focusMessageId?"focus-message":""
+}
+
+const focusMessage = (focusMessageItem, focusMessageRectangule) => {
+    if (focusMessageItem) {
+        messagesContainer.focus();
+        focusMessageItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+            focusMessageItem.classList.remove('focus-message')
+            focusMessageRectangule.classList.remove('main__chats-container__messages-container__sender--rectangle-focus-message')
+            focusMessageRectangule.classList.remove('main__chats-container__messages-container__receiver--rectangle-focus-message')
+            localStorage.removeItem('idMessages')
+          }, "500");
+    } else {
+        messagesContainer.focus();
+        const currentMessages = Array.from(messagesContainer.children)
+        if(!currentMessages.length) return;
+        currentMessages[currentMessages.length-1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+const viewedMessage = (currentChat, currentUser) => {
+    if(!currentChat) return;
+    if(!currentChat.messages.length) return;
+
+    const viewedMessages = currentChat.messages.map(message => {
+        if(message.sendBy !== currentUser && !message.isViewed) {
+            message.isViewed = true;
+        }
+
+        return message
+    })
+
+    editMessages(currentChat.id, viewedMessages, false);
 }
 
 export default loadMessages
