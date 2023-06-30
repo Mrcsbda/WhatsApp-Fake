@@ -143,7 +143,6 @@ const viewedMessage = (currentChat, currentUser) => {
         }
         return message
     })
-
     editMessages(currentChat.id, viewedMessages, false);
 }
 

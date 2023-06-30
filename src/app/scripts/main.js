@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 printInfoUsers()
 printListChats()
 sendMessage()
-searchMessages()
 registerUser(loginContainer, signUpContainer)
 loginValidation(homeContainer, loginContainer)
 printSignUp(loginContainer, signUpContainer)
@@ -43,4 +42,5 @@ printLogin(loginContainer, signUpContainer)
 loadLastMessage()
 closeEditContainer()
 searchContact()
+searchMessages()
 

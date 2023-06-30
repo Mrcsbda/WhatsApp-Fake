@@ -3,6 +3,7 @@ import { getUsers } from "../../services/getUsers"
 import loadMessages from "./loadMessages"
 import printContactProfile from "./printProfileContact"
 import { searchByMessages } from "./searchByMessage";
+import { searchMessages } from "./searchMessages";
 
 const inputSearch = document.getElementById('searchContact');
 const activeChat = document.querySelector('.main__chats-container');
@@ -91,11 +92,12 @@ const showCurrentChat = (currentChat, boolean) => {
         if (boolean) {
             loadMessages(chatId)
             const messageId = currentChat.querySelector('.main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message')
-                .getAttribute("message-id");
+            .getAttribute("message-id");
             localStorage.setItem('idMessages', messageId)
         } else {
             loadMessages(chatId)
         }
+        searchMessages()
         printContactProfile()
         closeViewActive()
         printListChats()
