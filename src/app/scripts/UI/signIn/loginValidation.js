@@ -3,6 +3,7 @@ import { patchUsers } from "../../services/patchUsers";
 import loadLastMessage from "../home/loadLastMessages";
 import printListChats from "../home/printListChats";
 import validationAlerts from "../validationAlerts";
+import printInfoUsers from "../home/printInfoUsers";
 
 const form = document.getElementById('form');
 const userInput = document.getElementById('user');
@@ -30,6 +31,7 @@ const loginValidation = async (homeContainer,loginContainer) => {
             patchUsers(userFound.id, true)
             loadLastMessage()
             printListChats()
+            printInfoUsers()
         }
     })
 }

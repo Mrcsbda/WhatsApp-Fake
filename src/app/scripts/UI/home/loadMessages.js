@@ -141,8 +141,6 @@ const focusMessage = (focusMessageItem, focusMessageRectangule) => {
 const viewedMessage = (currentChat, currentUser) => {
     if(!currentChat) return;
     if(!currentChat.messages.length) return;
-    console.log(currentChat)
-    console.log(currentUser.id)
     const viewedMessages = currentChat.messages.map(message => {
         if(message.sendBy !== currentUser.id && !message.isViewed) {
             message.isViewed = true;

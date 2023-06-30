@@ -1,8 +1,9 @@
 import { patchUsers } from "../../services/patchUsers";
 
-const btnSignOff = document.getElementById('btnSignOff');
+const homeContainer = document.querySelector('.main');
+const loginContainer = document.querySelector('.main-sign-in');
 
-const signOff = (homeContainer, loginContainer) => {
+const signOff = (btnSignOff) => {
     btnSignOff.addEventListener('click', () => {
         homeContainer.classList.remove('home-active');
         loginContainer.classList.add('login-active');
