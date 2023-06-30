@@ -1,5 +1,4 @@
 import "../styles/styles.scss"
-import { activeViews } from './UI/home/btnsActiveViews.js'
 import printInfoUsers from "./UI/home/printInfoUsers";
 import { closeEditContainer } from "./UI/home/closeEditMessage";
 import loadLastMessage from "./UI/home/loadLastMessages";
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 printInfoUsers()
-activeViews()
 printListChats()
 sendMessage()
 searchMessages()

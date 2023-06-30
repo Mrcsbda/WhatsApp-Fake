@@ -114,6 +114,7 @@ export const closeViewActive = () => {
     editContainer.classList.remove('edit-active-view')
     userProfile.classList.remove('active-view')
     messagesSearch.classList.remove('active-view')
+    localStorage.removeItem('messageToEditId')
 }
 
 const renderChats = (array, currentUser) => {
