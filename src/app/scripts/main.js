@@ -10,6 +10,7 @@ import printSignUp from "./UI/signIn/loadSignUp";
 import loginValidation from "./UI/signIn/loginValidation.js";
 import registerUser from "./UI/signUp/registerUsers";
 import printLogin from "./UI/signUp/returnLogin";
+import { searchMessages } from "./UI/home/searchMessages";
 
 const homeContainer = document.querySelector('.main');
 const loginContainer = document.querySelector('.main-sign-in');
@@ -36,6 +37,7 @@ printInfoUsers()
 activeViews()
 printListChats()
 sendMessage()
+searchMessages()
 registerUser(loginContainer, signUpContainer)
 loginValidation(homeContainer, loginContainer)
 printSignUp(loginContainer, signUpContainer)
