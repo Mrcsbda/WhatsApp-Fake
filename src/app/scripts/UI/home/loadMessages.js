@@ -34,7 +34,7 @@ const loadMessages = async (idChat) => {
                         <p class="${sendById(message.sendBy, currentUser)}__message-container--hour">
                          ${new Date(message.hour).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
                         <img src="https://www.svgrepo.com/show/445629/check-all.svg" alt="icon check" 
-                        class="${sendById(message.sendBy, currentUser)}__message-container--check">
+                        class="${sendById(message.sendBy, currentUser)}__message-container--check ${message.isViewed?"viewed-chat":""}">
                     </div>
                     <button data-id="${message.id}" class="${sendById(message.sendBy, currentUser)}__message-container--edit-or-delete-btn">
                         <img src="https://www.svgrepo.com/show/511356/arrow-down-338.svg" alt="arrow icon">
@@ -141,12 +141,12 @@ const focusMessage = (focusMessageItem, focusMessageRectangule) => {
 const viewedMessage = (currentChat, currentUser) => {
     if(!currentChat) return;
     if(!currentChat.messages.length) return;
-
+    console.log(currentChat)
+    console.log(currentUser.id)
     const viewedMessages = currentChat.messages.map(message => {
-        if(message.sendBy !== currentUser && !message.isViewed) {
+        if(message.sendBy !== currentUser.id && !message.isViewed) {
             message.isViewed = true;
         }
-
         return message
     })
 

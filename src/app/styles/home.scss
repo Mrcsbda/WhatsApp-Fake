@@ -404,7 +404,7 @@
 
                     &--check {
                         width: 1rem;
-                        filter: invert(65%) sepia(4%) saturate(17%) hue-rotate(3deg) brightness(91%) contrast(78%);
+                        filter: invert(36%) sepia(90%) saturate(0%) hue-rotate(220deg) brightness(81%) contrast(107%);
                     }
 
                     &--hour {
@@ -734,6 +734,22 @@
 
 .btn-edit-sucess {
     filter: none;
+}
+
+.focus-message {
+    background-image: linear-gradient(0deg,rgba(128, 128, 128, 0.267) 50%, rgba(128, 128, 128, 0.267) 50%);
+}
+
+.main__chats-container__messages-container__sender--rectangle-focus-message {
+    background-image: linear-gradient(130deg, rgba(128, 128, 128, 0.267) 50%, rgba(255, 255, 255, 0) 50%);
+}
+
+.main__chats-container__messages-container__receiver--rectangle-focus-message {
+    background-image: linear-gradient(220deg, rgba(128, 128, 128, 0.267) 50%, rgba(255, 255, 255, 0) 50%);
+}
+
+.viewed-chat {
+    filter: invert(79%) sepia(45%) saturate(7238%) hue-rotate(140deg) brightness(95%) contrast(91%);
 }
 
 @media screen and (min-width: 1280px) {

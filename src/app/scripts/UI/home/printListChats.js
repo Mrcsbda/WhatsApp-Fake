@@ -18,14 +18,14 @@ const printListChats = async (infoFiltered = null) => {
     let dataUsers = {}
     let dataUsersWithChats = '';
 
-    if(infoFiltered && infoFiltered.length !== 0) {
+    if (infoFiltered && infoFiltered.length !== 0) {
         dataUsers = {
             users: infoFiltered,
             chats,
             currentUser
         }
         dataUsersWithChats = getChatsByUser(dataUsers)
-        renderChats(dataUsersWithChats)
+        renderChats(dataUsersWithChats, currentUser)
     } else if (infoFiltered && infoFiltered.length === 0) {
         const filteredMessages = await searchByMessages();
         renderChatsByMessages(filteredMessages, users)
@@ -36,10 +36,10 @@ const printListChats = async (infoFiltered = null) => {
             currentUser
         }
         dataUsersWithChats = getChatsByUser(dataUsers)
-        renderChats(dataUsersWithChats)
+        renderChats(dataUsersWithChats, currentUser)
     }
-    
-   
+
+
 }
 
 const getChatsByUser = ({ users, chats, currentUser }) => {
@@ -62,7 +62,7 @@ const getChatsByUser = ({ users, chats, currentUser }) => {
 }
 
 const getLastTimeMessage = (dataChat) => {
-    if (!dataChat||!dataChat.messages.length) return ""
+    if (!dataChat || !dataChat.messages.length) return ""
     const today = new Date().setHours(0, 0, 0, 0);
     const sentDate = new Date(dataChat.messages[dataChat.messages.length - 1].hour).setHours(0, 0, 0, 0);
     const yesterday = new Date(today);
@@ -78,20 +78,20 @@ const getLastTimeMessage = (dataChat) => {
 }
 
 const getLastMessage = (dataChat) => {
-    
-    return !dataChat||!dataChat.messages.length ? " " : dataChat.messages[dataChat.messages.length - 1].message;
+
+    return !dataChat || !dataChat.messages.length ? " " : dataChat.messages[dataChat.messages.length - 1].message;
 }
 
-const showCurrentChat = (currentChat,boolean) => {
+const showCurrentChat = (currentChat, boolean) => {
     currentChat.addEventListener('click', () => {
         const userId = currentChat.getAttribute("user-id");
         const chatId = currentChat.getAttribute("chat-id");
         activeChat.classList.add('active-view')
         localStorage.setItem('contactId', userId)
-        if(boolean) {
+        if (boolean) {
             loadMessages(chatId)
             const messageId = currentChat.querySelector('.main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message')
-            .getAttribute("message-id");
+                .getAttribute("message-id");
             localStorage.setItem('idMessages', messageId)
         } else {
             loadMessages(chatId)
@@ -101,7 +101,7 @@ const showCurrentChat = (currentChat,boolean) => {
         printListChats()
         inputSearch.value = ''
     })
-    
+
 }
 
 const closeViewActive = () => {
@@ -112,9 +112,8 @@ const closeViewActive = () => {
     editContainer.classList.remove('edit-active-view')
 }
 
-const renderChats = (array) => {
+const renderChats = (array, currentUser) => {
     listChatsContainer.innerHTML = "";
-    
     array.forEach(user => {
         listChatsContainer.innerHTML += `
         <div class="main__left-side__chats-container__chats__contact-chat" user-id="${user.dataUser.id}" chat-id="${!user.dataChat ? 0 : user.dataChat.id}">
@@ -131,7 +130,8 @@ const renderChats = (array) => {
                 </p>
                 <p
                         class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation">
-                        <img class="${!user.dataChat ||!user.dataChat.messages.length? "inactive-icon" : "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"}"
+                        <img class="${hiddenIconChecked(user.dataChat, currentUser)
+                            ? "inactive-icon" : showIconChecked(user.dataChat.messages[user.dataChat.messages.length-1].isViewed)} "
                             src="https://www.svgrepo.com/show/445629/check-all.svg" alt="viewed icon">
                         <span
                                 class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message">
@@ -144,7 +144,7 @@ const renderChats = (array) => {
 
     const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
     listChats.forEach(chat => {
-        showCurrentChat(chat,false);
+        showCurrentChat(chat, false);
     })
 }
 
@@ -153,12 +153,12 @@ const renderChatsByMessages = (filteredMessages, users) => {
     const currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
     filteredMessages.forEach(message => {
         listChatsContainer.innerHTML += `
-        <div class="main__left-side__chats-container__chats__contact-chat" user-id="${message.sendBy===currentUserId?message.received:message.sendBy}" chat-id="${message.chatId}">
+        <div class="main__left-side__chats-container__chats__contact-chat" user-id="${message.sendBy === currentUserId ? message.received : message.sendBy}" chat-id="${message.chatId}">
             <div class="main__left-side__chats-container__chats__contact-chat__conversation-container">
                 <p
                         class="main__left-side__chats-container__chats__contact-chat__conversation-container__information">
                         <span
-                            class="main__left-side__chats-container__chats__contact-chat__conversation-container__information--name">${validationUser(message.sendBy,currentUserId,users)}</span>
+                            class="main__left-side__chats-container__chats__contact-chat__conversation-container__information--name">${validationUser(message.sendBy, currentUserId, users)}</span>
                 </p>
                 <p
                         class="main__left-side__chats-container__chats__contact-chat__conversation-container__conversation">
@@ -175,12 +175,26 @@ const renderChatsByMessages = (filteredMessages, users) => {
 
     const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
     listChats.forEach(chat => {
-        showCurrentChat(chat,true);
+        showCurrentChat(chat, true);
     })
 }
 
 const validationUser = (messageSendBy, currentUserId, users) => {
     return messageSendBy === currentUserId ? "Tú" : users.find(user => user.id === messageSendBy).name
+}
+
+const showIconChecked = (isViewed) => {
+
+    if(isViewed) {
+        return "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon viewed-chat"
+    } else {
+        return "main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--viewed-icon"
+    }
+
+}
+
+const hiddenIconChecked = (dataChat, currentUser) => {
+ return !dataChat || !dataChat.messages.length || currentUser.id !== dataChat.messages[dataChat.messages.length-1].sendBy
 }
 
 export default printListChats;
