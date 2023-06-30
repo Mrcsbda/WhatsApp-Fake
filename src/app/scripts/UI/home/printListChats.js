@@ -104,12 +104,14 @@ const showCurrentChat = (currentChat, boolean) => {
 
 }
 
-const closeViewActive = () => {
+export const closeViewActive = () => {
     const contactProfile = document.querySelector('.main__profie-contact-container')
+    const userProfile = document.getElementById('userProfile')
     contactProfile.classList.remove('active-view');
     sendMessageIcon.setAttribute('src', 'https://www.svgrepo.com/show/505493/send-2.svg')
     sendMessageIcon.classList.remove('btn-edit-sucess')
     editContainer.classList.remove('edit-active-view')
+    userProfile.classList.remove('active-view')
 }
 
 const renderChats = (array, currentUser) => {

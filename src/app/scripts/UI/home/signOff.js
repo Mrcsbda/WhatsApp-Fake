@@ -1,4 +1,5 @@
 import { patchUsers } from "../../services/patchUsers";
+import { closeViewActive } from "./printListChats";
 
 const homeContainer = document.querySelector('.main');
 const loginContainer = document.querySelector('.main-sign-in');
@@ -10,6 +11,7 @@ const signOff = (btnSignOff) => {
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
         patchUsers(currentUser.id, false)
         removeStorageData()
+        closeViewActive()
     })
 }
 
