@@ -8,7 +8,7 @@ const containerImage = document.querySelector('.main__left-side__chats-container
 const printInfoUsers = () => {
 
     const user = JSON.parse(localStorage.getItem('currentUser'));
-    
+    if(!user) return
     containerImage.innerHTML = `
     <img class="main__left-side__chats-container__user-picture-container--picture" src="${user.image}" alt="profile picture" id="userProfilePicture">
     `;

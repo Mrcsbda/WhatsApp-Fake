@@ -69,8 +69,9 @@ const focusSelectedMessage = (messagesFilteredContainer) => {
 }
 
 const getCurrentChat = async (currentUser) => {
-    const chats = await getChats()
+    if (!currentUser) return;
     const contactId = Number(localStorage.getItem('contactId'))
+    const chats = await getChats()
     const currentChat = chats.find(chat =>
         (chat.idUser1 === +currentUser.id || chat.idUser2 === +currentUser.id) &&
         (chat.idUser1 === contactId || chat.idUser2 === contactId))

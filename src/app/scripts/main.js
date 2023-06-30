@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-printInfoUsers()
+
 printListChats()
 sendMessage()
 registerUser(loginContainer, signUpContainer)
@@ -43,4 +43,5 @@ loadLastMessage()
 closeEditContainer()
 searchContact()
 searchMessages()
+printInfoUsers()
 
