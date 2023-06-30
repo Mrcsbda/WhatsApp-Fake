@@ -68,6 +68,9 @@ const loadMessages = async (idChat) => {
               }, "500");
         } else {
             messagesContainer.focus();
+            const currentMessages = Array.from(messagesContainer.children)
+            if(!currentMessages.length) return;
+            currentMessages[currentMessages.length-1].scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
           
 

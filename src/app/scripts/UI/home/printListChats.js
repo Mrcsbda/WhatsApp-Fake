@@ -4,6 +4,7 @@ import loadMessages from "./loadMessages"
 import printContactProfile from "./printProfileContact"
 import { searchByMessages } from "./searchByMessage";
 
+const inputSearch = document.getElementById('searchContact');
 const activeChat = document.querySelector('.main__chats-container');
 const listChatsContainer = document.getElementById('listChatsContainer');
 const editContainer = document.querySelector('.main__chats-container__footer__edit-message-container');
@@ -95,10 +96,12 @@ const showCurrentChat = (currentChat,boolean) => {
         } else {
             loadMessages(chatId)
         }
-
         printContactProfile()
         closeViewActive()
+        printListChats()
+        inputSearch.value = ''
     })
+    
 }
 
 const closeViewActive = () => {
@@ -148,7 +151,6 @@ const renderChats = (array) => {
 const renderChatsByMessages = (filteredMessages, users) => {
     listChatsContainer.innerHTML = "";
     const currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
-    console.log(filteredMessages)
     filteredMessages.forEach(message => {
         listChatsContainer.innerHTML += `
         <div class="main__left-side__chats-container__chats__contact-chat" user-id="${message.sendBy===currentUserId?message.received:message.sendBy}" chat-id="${message.chatId}">

@@ -1,9 +1,7 @@
 import { getUsers } from "../../services/getUsers";
 import printListChats from "./printListChats";
-import { searchByMessages } from "./searchByMessage";
 
 const inputSearch = document.getElementById('searchContact');
-
 
 export const searchContact = async () => {
     const users = await getUsers()
