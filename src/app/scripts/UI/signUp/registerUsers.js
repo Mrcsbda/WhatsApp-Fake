@@ -13,14 +13,11 @@ const registerUser = async (loginContainer, signUpContainer) => {
     formSignUp.addEventListener('submit', async (e) => {
         e.preventDefault();
         const existsNumber = await validationUser(inputPhone.value);
-        console.log(existsNumber)
         if (emptyInputsValidation()) {
             validationAlerts("emptyFields");
         } else if (existsNumber) {
-            console.log('entra aaca')
             validationAlerts("existenPhone");
         } else {
-            console.log('entra aca')
             const user = newUser();
             postUser(user);
             validationAlerts("successfulRegistration");

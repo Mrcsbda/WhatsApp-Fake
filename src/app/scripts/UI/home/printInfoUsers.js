@@ -1,4 +1,5 @@
 import editInfoUser from "./editInfoUsers";
+import signOff from "./signOff";
 
 
 const container = document.getElementById('userProfile');
@@ -74,10 +75,11 @@ const printInfoUsers = () => {
     const btnInfo = document.getElementById('btn-info');
     const closeUserProfileBtn = document.getElementById('closeProfile')
     const viewUserProfileBtn = document.getElementById('userProfilePicture')
+    const btnSignOff = document.getElementById('btnSignOff');
 
     editImage.forEach(button => {
         button.addEventListener('click', () => {
-            containerInputImage.classList.add('active-view')
+            containerInputImage.classList.toggle('edit-active-view')
             const inputUrlImage = document.getElementById('input-url-image')
             const btnImage = document.getElementById('btn-image');
             btnImage.addEventListener('click', () => {
@@ -88,17 +90,20 @@ const printInfoUsers = () => {
     });
 
     editName.addEventListener('click', () =>{
-        inputName.classList.add('active-view');
-        btnName.classList.add('active-view');
+        inputName.classList.toggle('active-view');
+        btnName.classList.toggle('active-view');
+        inputName.value = user.name;
         btnName.addEventListener('click', () => {
+
             const idUser = btnName.getAttribute('data-id');
             editInfoUser(inputName.value, idUser, 'name');
         });
     });
 
     editInfo.addEventListener('click', () => {
-        inputInfo.classList.add('active-view');
-        btnInfo.classList.add('active-view');
+        inputInfo.classList.toggle('active-view');
+        btnInfo.classList.toggle('active-view');
+        inputInfo.value = user.info;
         btnInfo.addEventListener('click', () => {
             const idUser = btnName.getAttribute('data-id');
             editInfoUser(inputInfo.value, idUser, 'info');
@@ -112,6 +117,8 @@ const printInfoUsers = () => {
     closeUserProfileBtn.addEventListener('click', () => {
         container.classList.remove('active-view')
     })
+
+    signOff(btnSignOff)
 }
 
 
