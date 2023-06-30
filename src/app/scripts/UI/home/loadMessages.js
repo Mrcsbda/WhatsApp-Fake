@@ -27,7 +27,7 @@ const loadMessages = async (idChat) => {
             chat.messages.forEach(message => {
                 messagesContainer.innerHTML += `
                 <div class="${sendById(message.sendBy, currentUser)}">
-                <div class="${sendById(message.sendBy, currentUser)}__message-container">
+                <div class="${sendById(message.sendBy, currentUser)}__message-container messages ${focusMessage()}" message-id="${message.id}">
                     <p class="${sendById(message.sendBy, currentUser)}__message-container--message">${message.message}</p>
                     <div class="${sendById(message.sendBy, currentUser)}__message-container--check-and-hour">
                         <p class="${sendById(message.sendBy, currentUser)}__message-container--hour">
@@ -106,6 +106,22 @@ const sendById = (sendById, currentUser) => {
     } else {
         return "main__chats-container__messages-container__receiver"
     }
+}
+
+const focusMessage = () => {
+    const messages = messagesContainer.querySelectorAll(".messages")
+    const focusMessageId = localStorage.getItem('idMessages')
+    if (!focusMessageId) return;
+    messages.forEach(message=> {
+        const messageId = message.getAttribute('message-id')
+        if(+messageId === +focusMessageId) {
+            console.log('entro a la coincidencia')
+            message.focus()
+            return "focus-message"
+        } else {
+            return ""
+        }
+    })
 }
 
 export default loadMessages

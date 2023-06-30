@@ -81,15 +81,21 @@ const getLastMessage = (dataChat) => {
     return !dataChat||!dataChat.messages.length ? " " : dataChat.messages[dataChat.messages.length - 1].message;
 }
 
-const showCurrentChat = (currentChat, idMessage = null) => {
-    currentChat.addEventListener('click', () => {
+const showCurrentChat = (currentChat) => {
+    currentChat.addEventListener('click', (e) => {
+        console.log(currentChat)
         const userId = currentChat.getAttribute("user-id");
         const chatId = currentChat.getAttribute("chat-id");
+        e.preventDefault()
+        const targetMessages = e.target.closest('.main__left-side__chats-container__chats__contact-chat') || null
         activeChat.classList.add('active-view')
         localStorage.setItem('contactId', userId)
-        if(idMessage) {
+        console.log(targetMessages)
+        if(targetMessages) {
             loadMessages(chatId)
-            localStorage.setItem('idMessages', idMessage)
+            const messageId = currentChat.querySelector('.main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message')
+            .getAttribute("message-id");
+            localStorage.setItem('idMessages', messageId)
         } else {
             loadMessages(chatId)
         }
@@ -171,12 +177,7 @@ const renderChatsByMessages = (filteredMessages, users) => {
 
     const listChats = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat')
     listChats.forEach(chat => {
-        const message = document.querySelectorAll('.main__left-side__chats-container__chats__contact-chat__conversation-container__conversation--message');
-        message.forEach(message => {
-            const messageId = message.getAttribute('message-id')
-            showCurrentChat(chat, messageId);
-        })
-        
+        showCurrentChat(chat);
     })
 }
 
