@@ -11,8 +11,8 @@ const cancelSearch = document.getElementById('cancelSearch')
 
 export const searchMessages = async () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    if (!currentUser) return;
     const currentChat = await getCurrentChat(currentUser)
+    if (!currentUser || !currentChat) return;
     renderMessages(currentChat.messages)
     showMessages()
     searchMessage.addEventListener('keydown', debounce(() => {
