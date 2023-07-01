@@ -4,13 +4,14 @@ import { showEditOrDeleteBtns } from "./btnsEditAndDelete";
 import { getDeleteButtons } from "./deleteMessages";
 import { getEditButtons, } from "./editMessage";
 const messagesContainer = document.getElementById('messagesContainer')
+const chatContainer = document.getElementById('chatsContainer')
 let chatMessagesSeparatedByDate = [];
 
 const loadMessages = async (idChat) => {
     const chats = await getChats();
     const currentChat = chats.find(chat => chat.id == idChat);
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
+    chatContainer.classList.remove('inactive');
     messagesContainer.innerHTML = "";
     chatMessagesSeparatedByDate = [];
 

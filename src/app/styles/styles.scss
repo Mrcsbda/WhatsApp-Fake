@@ -13,7 +13,9 @@ button.swal2-confirm.swal2-styled {
     display: flex;
 }
 
-
+.inactive {
+    display: none;
+}
 
 
 @media screen and (max-width: 1280px) {

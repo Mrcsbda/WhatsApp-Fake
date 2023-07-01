@@ -8,16 +8,18 @@ const loadLastMessage = async () => {
     const idCurrentUser = currentUser.id;
     const chats = await getChats();
     const orderChats = chats.filter(chat => chat.idUser1 === idCurrentUser || chat.idUser2 === idCurrentUser)
-    .sort((previous, current) => current.lastMessageSentAt - previous.lastMessageSentAt)
-    
-    if (orderChats[0].idUser1 !== idCurrentUser) {
-        printContactProfile(orderChats[0].idUser1)
-        localStorage.setItem('contactId', orderChats[0].idUser1)
-    } else {
-        printContactProfile(orderChats[0].idUser2)
-        localStorage.setItem('contactId', orderChats[0].idUser2)
+        .sort((previous, current) => current.lastMessageSentAt - previous.lastMessageSentAt)
+
+    if (orderChats.length > 0) {
+        if (orderChats[0].idUser1 !== idCurrentUser) {
+            printContactProfile(orderChats[0].idUser1)
+            localStorage.setItem('contactId', orderChats[0].idUser1)
+        } else {
+            printContactProfile(orderChats[0].idUser2)
+            localStorage.setItem('contactId', orderChats[0].idUser2)
+        }
+        loadMessages(orderChats[0].id)
     }
-    loadMessages(orderChats[0].id)
 }
 
 export default loadLastMessage;
