@@ -13,9 +13,9 @@ export const searchMessages = async () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     const currentChat = await getCurrentChat(currentUser)
     messagesContainer.innerHTML = '';
+    showMessages()
     if (!currentUser || !currentChat) return;
     renderMessages(currentChat.messages)
-    showMessages()
     searchMessage.addEventListener('keydown', debounce(() => {
         let filteredMessages = currentChat.messages.filter(message =>
             message.message.toLowerCase().includes(searchMessage.value.toLowerCase()))
