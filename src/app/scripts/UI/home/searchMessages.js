@@ -12,6 +12,7 @@ const cancelSearch = document.getElementById('cancelSearch')
 export const searchMessages = async () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     const currentChat = await getCurrentChat(currentUser)
+    messagesContainer.innerHTML = '';
     if (!currentUser || !currentChat) return;
     renderMessages(currentChat.messages)
     showMessages()
@@ -36,7 +37,6 @@ const showMessages = () => {
 
 const renderMessages = (messages) => {
     const today = new Date().setHours(0, 0, 0, 0);
-
     messagesContainer.innerHTML = '';
     messages.reverse().forEach(message => {
         messagesContainer.innerHTML += `
@@ -63,6 +63,7 @@ const focusSelectedMessage = (messagesFilteredContainer) => {
             const currentChat = await getCurrentChat(currentUser)
             searchMessage.value = '';
             loadMessages(currentChat.id)
+            
             renderMessages(currentChat.messages)
         })
     })
@@ -74,7 +75,7 @@ const getCurrentChat = async (currentUser) => {
     const chats = await getChats()
     const currentChat = chats.find(chat =>
         (chat.idUser1 === +currentUser.id || chat.idUser2 === +currentUser.id) &&
-        (chat.idUser1 === contactId || chat.idUser2 === contactId))
+        (chat.idUser1 === +contactId || chat.idUser2 === +contactId))
     return currentChat
 }
 
