@@ -7,7 +7,6 @@ const editInfoUser = async (input, id, type) => {
 
     let user = {}
     if (input === '') {
-        console.log('campo vacio')
         validationAlerts('emptyFields')
     } else {
         if (type === 'image') {
